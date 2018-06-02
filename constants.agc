@@ -31,16 +31,20 @@
 		
 	txt.ver					= 1000
 	
-	sprite.back				= 8999	
-	
+	sprite.back				= 9004
+	for i = 0 to 11
+		sprite.bSmall[i] 	= 9010 + i
+	next i
+	sprite.bLarge[0]		= 9023
+	sprite.bLarge[1]		= 9024
+
+		
 	// images	
 	media.font				= 9000
 	media.fontB				= 9001
 	media.back				= 9004
-
-	for i = 0 to media.waiting.length
-		media.waiting[i] = 9100 + i
-	next i
+	media.bSmall			= 9010
+	media.bLarge			= 9011
 	
 endFunction
 
@@ -51,21 +55,28 @@ function initColor()
 	color[0].g = 255
 	color[0].b = 255
 	color[0].a = 255
-	// dark red
-	color[1].r = 110
-	color[1].g = 60
-	color[1].b = 57
+	// black
+	color[1].r = 0
+	color[1].g = 0
+	color[1].b = 0
 	color[1].a = 255
-	// grey
-	color[2].r = 160
-	color[2].g = 160
-	color[2].b = 160
+	// orange highlight
+	color[2].r = 246
+	color[2].g = 197
+	color[2].b = 47
 	color[2].a = 255
-	// orange
-	color[3].r = 255
-	color[3].g = 192
-	color[3].b = 24
+	// olive drab
+	color[3].r = 116
+	color[3].g = 110
+	color[3].b = 70
 	color[3].a = 255
 	
 endFunction
 
+function initPos()
+	
+	pos.bStartX		= 10
+	pos.bStartY		= 80
+	pos.bWidth		= 20
+	
+endFunction

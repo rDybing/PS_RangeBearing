@@ -19,17 +19,16 @@
 #include "constants.agc"
 
 #constant false		= 0
-#constant true			= 1
-#constant nil			= -1
-#constant spaceKey		= 32
-#constant escapeKey	= 27
+#constant true		= 1
+#constant nil		= -1
 
 global media		as media_t				// constant IDs
-global font		as font_t				// constant IDs
+global font			as font_t				// constant IDs
 global layer		as layer_t				// constant layer values
 global sprite		as sprite_t				// constant IDs
 global txt			as txt_t				// constant IDs
-global color		as color_t[5]			// constant after init
+global color		as color_t[4]			// constant after init
+global pos			as position_t			// constant after init
 
 aspect				as float				// constant after init
 deviceX				as integer				// constant after init
@@ -42,7 +41,6 @@ dev 				as device_t
 SetRandomSeed(GetUnixTime())
 
 dev.os = GetDeviceBaseName()
-dev.model = GetDeviceType()
 
 if dev.os = "linux" or dev.os = "windows" or dev.os = "pi"
 	SetAntialiasMode(1)
@@ -72,18 +70,14 @@ fDeviceY = dev.height
 aspect = fDeviceX / fDeviceY
 
 dev.aspect = str(aspect, 2)
-dev.id = GetDeviceID()
-
-if dev.id = ""
-	dev.id = "NA"
-endif
 
 constants()
 initColor()
+initPos()
 importMedia()
 
 SetErrorMode(2)
-SetWindowTitle("fBus")
+SetWindowTitle("Mortar Range and Bearing")
 SetWindowSize(dev.width, dev.height, 0)
 SetWindowAllowResize(1)
 SetDisplayAspect(aspect)
@@ -94,16 +88,17 @@ UseNewDefaultFonts(1)
 SetPrintSize(2.0)
 SetPrintColor(255, 255, 0)
 
-initWaitSprite()
 setBackground()
 
 main(dev)
 
 function main(dev as device_t)
+	
+	placeButtonsSmall()
+	placeButtonsLarge()
 
 	do
 
-		print("Hello")
 		sync()
 
 	loop

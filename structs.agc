@@ -19,12 +19,14 @@ type media_t
 	font			as integer
 	fontB			as integer
 	back			as integer
-	waiting			as integer[]
+	bSmall			as integer
+	bLarge			as integer
 endType
 
 type sprite_t
 	back			as integer
-	waiting			as integer
+	bSmall			as integer[12]
+	bLarge			as integer[2]
 endType
 
 type layer_t
@@ -75,9 +77,7 @@ type device_t
 	width			as integer
 	height			as integer
 	aspect			as string
-	id				as string 
 	os				as string
-	model			as string 
 endType
 
 type color_t
@@ -85,6 +85,12 @@ type color_t
 	g				as integer
 	b				as integer
 	a				as integer
+endType
+
+type position_t
+	bStartX			as float
+	bStartY			as float
+	bWidth			as float
 endType
 
 type timer_t

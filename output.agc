@@ -18,7 +18,53 @@ function setBackground()
 	spr.height = 100
 	
 	imageSetup(sprite.back, layer.back, spr, media.back)
+	SetSpriteColor(sprite.back, color[3].r, color[3].g, color[3].b, color[3].a)
 
+endFunction
+
+function placeButtonsSmall()
+	
+	newLine	as integer
+	spr		as spriteProp_t
+	
+	spr.posX = pos.bStartX
+	spr.posY = pos.bStartY
+	spr.width = pos.bWidth
+	spr.height = -1
+	
+	for i = 0 to 11
+		if newLine > 2
+			newLine = 0
+			spr.posY = spr.posY - GetSpriteHeight(sprite.bSmall[0])
+		endif
+		if newRow > 2
+			newRow = 0
+			spr.posX = pos.bStartX
+		endif
+		
+		spr.posX = pos.bStartX + (spr.width * newRow)
+			
+		imageSetup(sprite.bSmall[i], layer.D, spr, media.bSmall)
+		
+		inc newLine
+		inc newRow
+	next i
+	
+endFunction
+
+function placeButtonsLarge()
+	
+	spr as spriteProp_t
+	
+	spr.posX = pos.bStartX + (pos.bWidth * 3)
+	spr.posY = pos.bStartY - GetSpriteHeight(sprite.bSmall[0])
+	spr.width = pos.bWidth
+	spr.height = -1
+	
+	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge)
+	spr.posY = spr.posY - GetSpriteHeight(sprite.bLArge[0])
+	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLArge)
+	
 endFunction
 
 // ************************************************ Chores Functions ***************************************************
@@ -113,40 +159,3 @@ function swapSprites(start as integer, stop as integer, in as integer)
 	next i
 				
 endFunction
-
-function initWaitSprite()
-	
-	spr as spriteProp_t
-	
-	spr.posX = 17
-	spr.posY = 30
-	spr.height = -1
-	spr.width = 20
-	
-	createSprite(sprite.waiting, media.waiting[0])
-	for i = 1 to media.waiting.length
-		AddSpriteAnimationFrame(sprite.waiting, media.waiting[i])
-	next i
-	SetSpriteFrame(sprite.waiting, 1)
-	SetSpriteDepth(sprite.waiting, layer.B)
-	setSpriteVisible(sprite.waiting, false)
-	setSpriteSize(sprite.waiting, spr.width, spr.height)
-	SetSpritePosition(sprite.waiting, spr.posX - round(spr.width / 2), spr.posY)
-	StopSprite(sprite.waiting)
-	
-endFunction
-
-function setWaitStatus(isTrue as integer)
-	
-	setSpriteFrame(sprite.waiting, 1)
-	setSpriteVisible(sprite.waiting, isTrue)
-	
-	if isTrue
-		//clearText(txt.menu, txt.menu) // temp whilst no video
-		PlaySprite(sprite.waiting)
-	else
-		StopSprite(sprite.waiting)
-	endif
-	
-endFunction
-
