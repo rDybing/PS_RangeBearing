@@ -8,6 +8,35 @@
  
 // ************************************************ Placement **********************************************************
 
+function placeNumericKeys()
+
+	mt as txtProp_t
+
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
+
+	for i = 0 to 11
+
+		setTextProperties(mt, getSpriteX(sprite.bSmall[i]) + (GetSpriteWidth(sprite.bSmall[i]) / 2), getSpriteY(sprite.bSmall[i]) + 3.5, 1)
+		select i
+		case 0
+			CreateText(txt.num[i], "POS")
+		endCase
+		case 1
+			CreateText(txt.num[i], "0")
+		endCase
+		case 2
+			CreateText(txt.num[i], "TGT")
+		endCase
+		case default
+			CreateText(txt.num[i], str(i - 2))
+		endCase
+		endSelect
+		textDraw(txt.num[i], mt)
+
+	next i
+
+endFunction
+
 // ************************************************ Chores *************************************************************
 
 function fadeText(startTxt as integer, stopTxt as integer, dir as string)

@@ -28,9 +28,14 @@
 	layer.C					= 30
 	layer.D					= 40
 	layer.back				= 999
-		
+
+	// text
 	txt.ver					= 1000
-	
+	for i = 0 to 11
+		txt.num[i]			= 1010 + i
+	next i
+
+	// sprites
 	sprite.back				= 9004
 	for i = 0 to 11
 		sprite.bSmall[i] 	= 9010 + i
@@ -38,7 +43,6 @@
 	sprite.bLarge[0]		= 9023
 	sprite.bLarge[1]		= 9024
 
-		
 	// images	
 	media.font				= 9000
 	media.fontB				= 9001

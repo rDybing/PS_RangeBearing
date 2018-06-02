@@ -12,7 +12,7 @@ function importMedia()
 	
 	fileName as string 
 	
-	loadFont(media.font, "")
+	loadFont(media.font, "BebasKai-Regular.otf")
 	loadFont(media.fontB, "")
 	loadImage(media.back, "grainyMetal02.jpg")
 	loadImage(media.bSmall, "button_small.png")
