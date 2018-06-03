@@ -6,7 +6,7 @@
  *
  * *******************************************/
 
-function mainScreen()
+function mainScreen(dev as device_t)
 	
 	m					as mouse_t
 	bState				as buttonState_t
@@ -137,25 +137,14 @@ function mainScreen()
 			bState.active = false
 			setKeyHighlight(activeKey, off)
 		endif
-		testKeyString(keyString, keyStringPosition, bState.mode)
+		testKeyString(keyString, keyStringPosition, bState.mode, dev)
 		sync()
 	
 	loop
 	
 endFunction
 
-function placeMainScreen()
-	
-	placeButtonsSmall()
-	placeButtonsLarge()
-	placeNumericKeysTxt()
-	placeNextKeyTxt()
-	placeCalcKeyTxt()
-	placeAlphaKeysTxt()
-	
-endFunction
-
-function testKeyString(ks as string[][], ksp as integer, mode as integer)
+function testKeyString(ks as string[][], ksp as integer, mode as integer, dev as device_t)
 	
 	outPOS as string = "POS: "
 	outTGT as string = "TGT: "
@@ -173,5 +162,5 @@ function testKeyString(ks as string[][], ksp as integer, mode as integer)
 	else
 		print("Mode: TGT")
 	endif
-	
+	print(dev.aspect)
 endFunction

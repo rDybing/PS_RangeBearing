@@ -22,12 +22,14 @@ type media_t
 	bSmall			as integer
 	bLarge			as integer
 	keyClick		as integer
+	lcd				as integer
 endType
 
 type sprite_t
 	back			as integer
 	bSmall			as integer[12]
 	bLarge			as integer[2]
+	lcd				as integer
 endType
 
 type layer_t
@@ -51,6 +53,7 @@ type txt_t
 	num				as integer[12]
 	large			as integer[8]
 	alpha			as integer[9]
+	lcdFixed		as integer[2]
 endType
 
 type txtProp_t	
@@ -95,6 +98,10 @@ type position_t
 	bStartX			as float
 	bStartY			as float
 	bWidth			as float
+	lcdStartX		as float
+	lcdStartY		as float
+	lcdWidth		as float
+	lcdFudgeY		as float
 endType
 
 type timer_t

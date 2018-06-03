@@ -27,12 +27,12 @@
 #constant off		= 0
 
 global media		as media_t				// constant IDs
-global font			as font_t				// constant IDs
+global font		as font_t				// constant IDs
 global layer		as layer_t				// constant layer values
 global sprite		as sprite_t				// constant IDs
 global txt			as txt_t				// constant IDs
 global color		as color_t[3]			// constant after init
-global position		as position_t			// constant after init
+global position	as position_t			// constant after init
 
 aspect				as float				// constant after init
 deviceX				as integer				// constant after init
@@ -77,7 +77,7 @@ dev.aspect = str(aspect, 2)
 
 constants()
 initColor()
-initPos()
+initPos(aspect)
 importMedia()
 
 SetErrorMode(2)
@@ -98,6 +98,6 @@ main(dev)
 
 function main(dev as device_t)
 
-	mainScreen()
+	mainScreen(dev)
 
 endFunction

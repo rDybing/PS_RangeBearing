@@ -61,6 +61,22 @@ endFunction
  
 // ************************************************ Placement **********************************************************
 
+function placeLCDText()
+
+	mt as txtProp_t
+	fudge as float = 0.0
+	out as string[2] = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                                 DISTANCE"]
+
+	setFontProperties(color[1].r, color[1].g, color[1].b, media.font, 1.75)
+	
+	for i = 0 to 2
+		setTextProperties(mt, position.lcdStartX + 10.5, position.lcdStartY + 3.5 + position.lcdFudgeY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+		createText(txt.lcdFixed[i], out[i])
+		textDraw(txt.lcdFixed[i], mt)
+	next i		
+
+endFunction
+
 function placeNumericKeysTxt()
 
 	mt as txtProp_t

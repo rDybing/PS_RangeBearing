@@ -26,6 +26,9 @@
 	for i = 0 to 8
 		txt.alpha[i]		= 1030 + i // to 1038
 	next i
+	for i = 0 to 2
+		txt.lcdFixed[i]		= 1039 + i // to 1041
+	next i
 
 	// sprites
 	sprite.back				= 9004
@@ -34,6 +37,7 @@
 	next i
 	sprite.bLarge[0]		= 9022
 	sprite.bLarge[1]		= 9023
+	sprite.lcd				= 9024
 
 	// images	
 	media.font				= 9000
@@ -41,6 +45,7 @@
 	media.back				= 9004
 	media.bSmall			= 9010
 	media.bLarge			= 9011
+	media.lcd				= 9012
 
 	// sounds
 	media.keyClick			= 1
@@ -72,10 +77,19 @@ function initColor()
 	
 endFunction
 
-function initPos()
+function initPos(aspect as float)
 	
 	position.bStartX		= 10.0
 	position.bStartY		= 80.0
 	position.bWidth			= 20.0
+	position.lcdStartX		= 7.0
+	position.lcdStartY		= 4.0
+	position.lcdWidth		= 86.0
+
+	if aspect > 0.65
+		position.lcdFudgeY = 1.5
+	else
+		position.lcdFudgeY = 0.0
+	endif
 	
 endFunction

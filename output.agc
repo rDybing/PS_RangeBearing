@@ -22,6 +22,32 @@ function setBackground()
 
 endFunction
 
+function placeMainScreen()
+	
+	placeButtonsSmall()
+	placeButtonsLarge()
+	placeNumericKeysTxt()
+	placeNextKeyTxt()
+	placeCalcKeyTxt()
+	placeAlphaKeysTxt()
+	placeLCD()
+	placeLCDText()
+	
+endFunction
+
+function placeLCD()
+
+	spr as spriteProp_t
+
+	spr.posX = position.lcdStartX
+	spr.posY = position.lcdStartY
+	spr.width = position.lcdWidth
+	spr.height = -1
+
+	imageSetup(sprite.lcd, layer.C, spr, media.lcd)
+
+endFunction
+
 function placeButtonsSmall()
 	
 	newLine	as integer
