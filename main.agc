@@ -25,6 +25,7 @@
 #constant TGT		= 1
 #constant on		= 1
 #constant off		= 0
+#constant Pi		= 3.14159
 
 global media		as media_t				// constant IDs
 global font		as font_t				// constant IDs
@@ -48,7 +49,7 @@ dev.os = GetDeviceBaseName()
 
 if dev.os = "linux" or dev.os = "windows" or dev.os = "pi"
 	SetAntialiasMode(1)
-	aspectMode = 1
+	aspectMode = 2
 	select aspectMode
 	case 0									// 0 = iPad || 1 = iPhone
 		dev.width = 768						// iPad 50% 4/3

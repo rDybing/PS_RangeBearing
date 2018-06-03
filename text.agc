@@ -64,7 +64,13 @@ endFunction
 function placeLCDText()
 
 	mt as txtProp_t
-	out as string[2] = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                        DISTANCE"]
+	out as string[2]
+	
+	if position.lcdFudgeY = 0.0
+		out = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                        DISTANCE"]
+	else
+		out = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                                            DISTANCE"]
+	endif
 
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.font, 1.75)
 	
@@ -114,11 +120,11 @@ function placeCalcText()
 	offsetXX = 6
 	
 	posX = getTextX(txt.lcdFixed[0]) + 1
-	posY = getTextY(txt.lcdFixed[0]) + 12.3
+	posY = getTextY(txt.lcdFixed[0]) + (GetSpriteHeight(sprite.lcd) / 4.25) * 2.37
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.fontB, 3.1)
 
 	setTextProperties(mt, posX - 11 + (offsetX), posY, 0)
-	createText(txt.lcdCalc[0], "000'")
+	createText(txt.lcdCalc[0], "000.0'")
 	textDraw(txt.lcdCalc[0], mt)
 	setTextProperties(mt, 50, posY, 0)
 	createText(txt.lcdCalc[1], "0000m")
@@ -130,15 +136,15 @@ function updateCalcText(c as calc_t)
 
 	bearing	as string
 	range	as string
-	/*
-	bearing = str(c.angle, 2) + "'"
-	if len(bearing) = 2
+	
+	bearing = str(c.angle, 1) + "'"
+	if len(bearing) = 4
 		bearing = "00" + bearing
-	elseif len(bearing) = 3
+	elseif len(bearing) = 5
 		bearing = "0" + bearing
 	endif
 	SetTextString(txt.lcdCalc[0], bearing)
-	*/
+	
 	range = str(c.range, 0) + "m"
 	if len(range) = 2
 		range = "000" + range

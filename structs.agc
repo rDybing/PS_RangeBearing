@@ -141,5 +141,6 @@ type calc_t
 	mY				as string
 	tX				as string
 	tY				as string
+	a				as string
 endType
 

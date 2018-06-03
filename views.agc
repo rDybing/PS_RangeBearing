@@ -175,7 +175,7 @@ function mainScreen(dev as device_t)
 		endif
 		
 		//testKeyString(keyString, keyStringPosition, bState.mode, dev)
-		testXY(calc)
+		//testXY(calc)
 		sync()
 	
 	loop
@@ -190,7 +190,6 @@ function calc(c as coord_t[], ks as string[][])
 	tgtX	as float
 	tgtY	as float
 	radians as float
-	Pi		as float = 3.14159
 	coordX	as float
 	coordY	as float
 
@@ -228,17 +227,28 @@ function calc(c as coord_t[], ks as string[][])
 		coordY = 0.0
 	endif
 
-	calc.range = round(sqrt((coordX ^ 2) + (coordY ^ 2)))
+	calc.range = sqrt((coordX ^ 2) + (coordY ^ 2))
 
-	radians = atan2(tgtY - mrtY, tgtX - mrtX)
-	calc.angle = ((radians + Pi) * 360.0) / (2.0 * Pi)
+    coordY = tgtY - mrtY
+    coordX = tgtX - mrtX
+    //calc.angle = angleTrunc(atan2(coordX, coordY))
+    calc.angle = atanfull(coordX, coordY)
 
 	calc.mX = str(mrtX)
 	calc.mY = str(mrtY)
 	calc.tX = str(tgtX)
 	calc.tY = str(tgtY)
+	calc.a = str(calc.angle)
 
 endFunction calc
+
+/*
+function angleTrunc(a as float)
+    while a < 0.0
+        a = a + (Pi * 2.0)
+	endWhile
+endFunction a
+*/
 
 function testKeyString(ks as string[][], ksp as integer, mode as integer, dev as device_t)
 	
@@ -267,5 +277,6 @@ function testXY(c as calc_t)
 	print("mrt Y: " + c.mY)
 	print("tgt X: " + c.tX)
 	print("tgt Y: " + c.tY)
+	print("angle: " + c.a)
 
 endFunction
