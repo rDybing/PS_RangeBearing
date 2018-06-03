@@ -18,8 +18,8 @@ function mainScreen()
 	
 	bState.latch[0] = true
 	bState.latch[1] = false
-	keyString[0] =["A", "1", "1", "1", "5"]
-	keyString[1] =["A", "1", "1", "1", "5"]
+	keyString[0] =["A", "10", "1", "1", "5"]
+	keyString[1] =["A", "10", "1", "1", "5"]
 	bState.mode = POS
 	
 	do
@@ -99,7 +99,8 @@ function mainScreen()
 					inc keystringPosition
 				else
 					keyStringPosition = 0
-				endif			
+				endif
+				bState.singleDigit = true		
 			endCase
 			endSelect
 			

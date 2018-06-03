@@ -46,11 +46,12 @@
 	endif
 	if ksp > 0
 		if ksp = 1
-			if len(ks[bState.mode, ksp]) = 1
+			if len(ks[bState.mode, ksp]) = 1 and bState.singleDigit = false
 				ks[bState.mode, ksp] = ks[bState.mode, ksp] + str(key)
 			else
 				ks[bState.mode, ksp] = str(key)
-			endif							
+				bState.singleDigit = false
+			endif
 		else
 			ks[bState.mode, ksp] = str(key)
 		endif

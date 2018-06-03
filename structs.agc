@@ -112,5 +112,6 @@ type buttonState_t
 	lastKey			as integer
 	hits			as integer
 	mode			as integer
+	singleDigit		as integer
 endType
 
