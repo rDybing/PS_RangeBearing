@@ -15,17 +15,23 @@ function mainScreen(dev as device_t)
 	keyStringPosition	as integer
 	blinkTimer			as timer_t
 	blink				as integer
+	keyPressed			as integer
+	coord				as coord_t[1]
+	calc				as calc_t
 	
 	placeMainScreen()
 	
 	bState.latch[0] = true
 	bState.latch[1] = false
-	keyString[0] =["A", "10", "1", "1", "5"]
-	keyString[1] =["A", "10", "1", "1", "5"]
+	bState.calc = false
+	keyString[0] =["A", "1", "7", "7", "7"]
+	keyString[1] =["A", "1", "7", "7", "7"]
 	bState.mode = POS
 	setKeyLatchHighlight(POS)
 	bState.active = false
 	placeLCDTextNumeric(keyString)
+	placeCalcText()
+	initCoord(coord)
 
 	blinkTimer = setTimer(250)
 	
@@ -36,6 +42,7 @@ function mainScreen(dev as device_t)
 		if m.hit
 			
 			spr = getMouseHit(m)
+			keyPressed = true
 			
 			select spr
 			// --- Key POS
@@ -115,7 +122,9 @@ function mainScreen(dev as device_t)
 			endCase
 			// --- Key CALC
 			case sprite.bLarge[0]
-				activeKey = setKeyHighlight(sprite.bLarge[0], on)			
+				activeKey = setKeyHighlight(sprite.bLarge[0], on)
+				calc = calc(coord, keyString)
+				bState.calc = true			
 			endCase
 			// --- Key NEXT
 			case sprite.bLarge[1]
@@ -127,24 +136,28 @@ function mainScreen(dev as device_t)
 				activeKey = setKeyHighlight(sprite.bLarge[1], on)
 				bState.singleDigit = true		
 			endCase
+			case default
+				keyPressed = false
+			endCase
 			endSelect
 
-			keyTimer = setTimer(75)
-			bState.lastKey = spr
-			
-			if activeKey = sprite.bSmall[0] or activeKey = sprite.bSmall[2]
-				bState.active = false
-			else
-				bState.active = true
-				updateLCDText(bState.mode, keyString, keyStringPosition)
+			if keyPressed
+				keyTimer = setTimer(75)
+				bState.lastKey = spr
+				
+				if activeKey = sprite.bSmall[0] or activeKey = sprite.bSmall[2]
+					bState.active = false
+				else
+					bState.active = true
+					updateLCDText(bState.mode, keyString, keyStringPosition)
+				endif
+
+				PlaySound(media.keyClick)
+
+				for i = 0 to txt.lcdFloating.length
+					SetTextVisible(txt.lcdFloating[i], 1)
+				next i
 			endif
-
-			PlaySound(media.keyClick)
-
-			for i = 0 to txt.lcdFloating.length
-				SetTextVisible(txt.lcdFloating[i], 1)
-			next i
-			
 		endif
 		if bState.active and getTimer(keyTimer)
 			bState.active = false
@@ -155,13 +168,77 @@ function mainScreen(dev as device_t)
 			blink = not blink
 			blinkLCDText(bState.mode, keyStringPosition, blink)
 		endif
+
+		if bState.calc
+			updateCalcText(calc)
+			bState.calc = false
+		endif
 		
 		//testKeyString(keyString, keyStringPosition, bState.mode, dev)
+		testXY(calc)
 		sync()
 	
 	loop
 	
 endFunction
+
+function calc(c as coord_t[], ks as string[][])
+
+	calc 	as calc_t
+	mrtX	as float
+	mrtY	as float
+	tgtX	as float
+	tgtY	as float
+	radians as float
+	Pi		as float = 3.14159
+	coordX	as float
+	coordY	as float
+
+	mrtX = (asc(ks[0, 0]) - 65) * 300
+	mrtX = mrtX + (c[0].mini[val(ks[0, 2]) - 1])
+	mrtX = mrtX + (c[0].micro[val(ks[0, 3]) - 1])
+	mrtX = mrtX + (c[0].nano[val(ks[0, 4]) - 1])
+	mrtY = (val(ks[0, 1]) - 1) * 300
+	mrtY = mrtY + (c[1].mini[val(ks[0, 2]) - 1])
+	mrtY = mrtY + (c[1].micro[val(ks[0, 3]) - 1])
+	mrtY = mrtY + (c[1].nano[val(ks[0, 4]) - 1])
+
+	tgtX = (asc(ks[1, 0]) - 65) * 300
+	tgtX = tgtX + (c[0].mini[val(ks[1, 2]) - 1])
+	tgtX = tgtX + (c[0].micro[val(ks[1, 3]) - 1])
+	tgtX = tgtX + (c[0].nano[val(ks[1, 4]) - 1])
+	tgtY = (val(ks[1, 1]) - 1) * 300
+	tgtY = tgtY + (c[1].mini[val(ks[1, 2]) - 1])
+	tgtY = tgtY + (c[1].micro[val(ks[1, 3]) - 1])
+	tgtY = tgtY + (c[1].nano[val(ks[1, 4]) - 1])
+
+	if tgtX > mrtX
+		coordX = tgtX - mrtX
+	elseif mrtX > tgtX
+		coordX = mrtX - tgtX
+	else
+		coordX = 0.0
+	endif
+
+	if tgtY > mrtY
+		coordY = tgtY - mrtY
+	elseif mrtY > tgtY
+		coordY = mrtY - tgtY
+	else
+		coordY = 0.0
+	endif
+
+	calc.range = round(sqrt((coordX ^ 2) + (coordY ^ 2)))
+
+	radians = atan2(tgtY - mrtY, tgtX - mrtX)
+	calc.angle = ((radians + Pi) * 360.0) / (2.0 * Pi)
+
+	calc.mX = str(mrtX)
+	calc.mY = str(mrtY)
+	calc.tX = str(tgtX)
+	calc.tY = str(tgtY)
+
+endFunction calc
 
 function testKeyString(ks as string[][], ksp as integer, mode as integer, dev as device_t)
 	
@@ -182,4 +259,13 @@ function testKeyString(ks as string[][], ksp as integer, mode as integer, dev as
 		print("Mode: TGT")
 	endif
 	print(dev.aspect)
+endFunction
+
+function testXY(c as calc_t)
+
+	print("mrt X: " + c.mX)
+	print("mrt Y: " + c.mY)
+	print("tgt X: " + c.tX)
+	print("tgt Y: " + c.tY)
+
 endFunction

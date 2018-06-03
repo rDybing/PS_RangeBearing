@@ -55,6 +55,7 @@ type txt_t
 	alpha			as integer[9]
 	lcdFixed		as integer[2]
 	lcdFloating		as integer[9]
+	lcdCalc			as integer[1]
 endType
 
 type txtProp_t	
@@ -123,5 +124,22 @@ type buttonState_t
 	mode			as integer
 	singleDigit		as integer
 	active			as integer
+	calc			as integer
+endType
+
+type coord_t
+	macro			as float
+	mini			as float[8]
+	micro			as float[8]
+	nano			as float[8]
+endType
+
+type calc_t
+	range			as float
+	angle			as float
+	mX				as string
+	mY				as string
+	tX				as string
+	tY				as string
 endType
 

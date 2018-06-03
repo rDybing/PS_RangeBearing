@@ -30,9 +30,11 @@
 		txt.lcdFixed[i]		= 1039 + i // to 1041
 	next i
 	for i = 0 to 9
-		txt.lcdFloating[i]	= 1042 + i
+		txt.lcdFloating[i]	= 1042 + i // to 1051
 	next i
-
+	txt.lcdCalc[0]			= 1052
+	txt.lcdCalc[1]			= 1053
+	
 	// sprites
 	sprite.back				= 9004
 	for i = 0 to 11
@@ -95,4 +97,76 @@ function initPos(aspect as float)
 		position.lcdFudgeY = 0.0
 	endif
 	
+endFunction
+
+function initCoord(c ref as coord_t[])
+
+	/*
+	first dim = x or y
+	second dim = strinKeyPosition
+	all indexes shifted down one
+	*/
+
+	// X coords
+	c[0].mini[0] = 0
+	c[0].mini[3] = 0
+	c[0].mini[6] = 0
+	c[0].mini[1] = 100
+	c[0].mini[4] = 100
+	c[0].mini[7] = 100
+	c[0].mini[2] = 200
+	c[0].mini[5] = 200
+	c[0].mini[8] = 200
+	
+	c[0].micro[0] = 0
+	c[0].micro[3] = 0
+	c[0].micro[6] = 0
+	c[0].micro[1] = 33.33
+	c[0].micro[4] = 33.33
+	c[0].micro[7] = 33.33
+	c[0].micro[2] = 66.66
+	c[0].micro[5] = 66.66
+	c[0].micro[8] = 66.66
+	
+	c[0].nano[0] = 0
+	c[0].nano[3] = 0
+	c[0].nano[6] = 0
+	c[0].nano[1] = 11.11
+	c[0].nano[4] = 11.11
+	c[0].nano[7] = 11.11
+	c[0].nano[2] = 22.22
+	c[0].nano[5] = 22.22
+	c[0].nano[8] = 22.22
+
+	// Y coords
+	c[1].mini[6] = 0
+	c[1].mini[7] = 0
+	c[1].mini[8] = 0
+	c[1].mini[3] = 100
+	c[1].mini[4] = 100
+	c[1].mini[5] = 100
+	c[1].mini[0] = 200
+	c[1].mini[1] = 200
+	c[1].mini[2] = 200
+
+	c[1].micro[6] = 0
+	c[1].micro[7] = 0
+	c[1].micro[8] = 0
+	c[1].micro[3] = 33.33
+	c[1].micro[4] = 33.33
+	c[1].micro[5] = 33.33
+	c[1].micro[0] = 66.66
+	c[1].micro[1] = 66.66
+	c[1].micro[2] = 66.66
+
+	c[1].nano[6] = 0
+	c[1].nano[7] = 0
+	c[1].nano[8] = 0
+	c[1].nano[3] = 11.11
+	c[1].nano[4] = 11.11
+	c[1].nano[5] = 11.11
+	c[1].nano[0] = 22.22
+	c[1].nano[1] = 22.22
+	c[1].nano[2] = 22.22
+
 endFunction
