@@ -2,7 +2,7 @@
  *
  * constants.agc
  *
- * Project: msSignServe
+ * Project: PS_RangeBearing
  *
  * *******************************************/
  
@@ -18,10 +18,13 @@
 	// text
 	txt.ver					= 1000
 	for i = 0 to 11
-		txt.num[i]			= 1010 + i
+		txt.num[i]			= 1010 + i // to 1021
 	next i
 	for i = 0 to 7
-		txt.large[i]		= 1022 + i
+		txt.large[i]		= 1022 + i // to 1029
+	next i
+	for i = 0 to 8
+		txt.alpha[i]		= 1030 + i // to 1038
 	next i
 
 	// sprites
@@ -68,8 +71,8 @@ endFunction
 
 function initPos()
 	
-	pos.bStartX		= 10
-	pos.bStartY		= 80
-	pos.bWidth		= 20
+	position.bStartX		= 10.0
+	position.bStartY		= 80.0
+	position.bWidth			= 20.0
 	
 endFunction

@@ -1,6 +1,6 @@
 /* *******************************************
  *
- * fBus
+ * PS_RangeBearing
  *
  * CC-BY Roy Dybing 2018
  *
@@ -21,14 +21,16 @@
 #constant false		= 0
 #constant true		= 1
 #constant nil		= -1
+#constant POS		= 0
+#constant TGT		= 1
 
 global media		as media_t				// constant IDs
 global font			as font_t				// constant IDs
 global layer		as layer_t				// constant layer values
 global sprite		as sprite_t				// constant IDs
 global txt			as txt_t				// constant IDs
-global color		as color_t[4]			// constant after init
-global pos			as position_t			// constant after init
+global color		as color_t[3]			// constant after init
+global position		as position_t			// constant after init
 
 aspect				as float				// constant after init
 deviceX				as integer				// constant after init
@@ -44,7 +46,7 @@ dev.os = GetDeviceBaseName()
 
 if dev.os = "linux" or dev.os = "windows" or dev.os = "pi"
 	SetAntialiasMode(1)
-	aspectMode = 1
+	aspectMode = 2
 	select aspectMode
 	case 0									// 0 = iPad || 1 = iPhone
 		dev.width = 768						// iPad 50% 4/3
@@ -93,17 +95,7 @@ setBackground()
 main(dev)
 
 function main(dev as device_t)
-	
-	placeButtonsSmall()
-	placeButtonsLarge()
-	placeNumericKeys()
-	placeNextKeyTxt()
-	placeCalcKeyTxt()
 
-	do
-
-		sync()
-
-	loop
+	mainScreen()
 
 endFunction

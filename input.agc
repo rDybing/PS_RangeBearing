@@ -2,7 +2,7 @@
  *
  * input.agc
  *
- * Project: fBus
+ * Project: PS_RangeBearing
  *
  * *******************************************/
  
@@ -20,7 +20,7 @@ function getMouseHit(m as mouse_t)
 	
 	m.spriteID = GetSpriteHit(m.x, m.y)
 	
-endFunction m
+endFunction m.spriteID
 
 function getMouseHover(spriteID)
 	
@@ -42,7 +42,7 @@ function getButton(sprID as integer)
 	m as mouse_t
 	out = false
 
-	m = getMouseHit(updateMouse())
+	m.spriteID = getMouseHit(updateMouse())
 	
 	if m.hit and m.spriteID = sprID
 		out = true

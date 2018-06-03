@@ -2,7 +2,7 @@
  *
  * output.agc
  *
- * Project: msSignServe
+ * Project: PS_RangeBearing
  *
  * *******************************************/
  
@@ -27,9 +27,9 @@ function placeButtonsSmall()
 	newLine	as integer
 	spr		as spriteProp_t
 	
-	spr.posX = pos.bStartX
-	spr.posY = pos.bStartY
-	spr.width = pos.bWidth
+	spr.posX = position.bStartX
+	spr.posY = position.bStartY
+	spr.width = position.bWidth
 	spr.height = -1
 	
 	for i = 0 to 11
@@ -39,10 +39,10 @@ function placeButtonsSmall()
 		endif
 		if newRow > 2
 			newRow = 0
-			spr.posX = pos.bStartX
+			spr.posX = position.bStartX
 		endif
 		
-		spr.posX = pos.bStartX + (spr.width * newRow)
+		spr.posX = position.bStartX + (spr.width * newRow)
 			
 		imageSetup(sprite.bSmall[i], layer.D, spr, media.bSmall)
 		
@@ -56,9 +56,9 @@ function placeButtonsLarge()
 	
 	spr as spriteProp_t
 	
-	spr.posX = pos.bStartX + (pos.bWidth * 3)
-	spr.posY = pos.bStartY - GetSpriteHeight(sprite.bSmall[0])
-	spr.width = pos.bWidth
+	spr.posX = position.bStartX + (position.bWidth * 3)
+	spr.posY = position.bStartY - GetSpriteHeight(sprite.bSmall[0])
+	spr.width = position.bWidth
 	spr.height = -1
 	
 	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge)

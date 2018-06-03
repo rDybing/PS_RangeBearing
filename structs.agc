@@ -2,7 +2,7 @@
  *
  * structs.agc
  *
- * Project: fBus
+ * Project: PS_RangeBearing
  *
  * *******************************************/
 
@@ -49,6 +49,7 @@ type txt_t
 	ver				as integer
 	num				as integer[12]
 	large			as integer[8]
+	alpha			as integer[9]
 endType
 
 type txtProp_t	
@@ -105,4 +106,11 @@ type tweens_t
 	foo				as integer
 endType			
 
+type buttonState_t
+	timePressed		as integer
+	latch			as integer[2]
+	lastKey			as integer
+	hits			as integer
+	mode			as integer
+endType
 

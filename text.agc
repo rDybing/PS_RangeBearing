@@ -2,13 +2,65 @@
  *
  * text.agc
  *
- * Project: fBus
+ * Project: PS_RangeBearing
  *
  * *******************************************/
  
+ function setKeyString(spr as integer, ks ref as string[][], bState ref as buttonState_t, ksp as integer, keyOffset as integer, key as integer)
+	
+	reset as integer = false
+	
+	if ksp = 0
+		if key <> 9 and key <> 0
+			if spr <> bState.lastKey
+				bState.hits = 0
+			endif
+			select bState.hits
+			case 0
+				ks[bState.mode, ksp] = chr(65 + keyOffset)
+			endCase
+			case 1
+				ks[bState.mode, ksp] = chr(66 + keyOffset)
+			endCase
+			case 2
+				ks[bState.mode, ksp] = chr(67 + keyOffset)
+				reset = true
+			endCase
+			endSelect
+		elseif key = 9
+			select bState.hits
+			case 0
+				ks[bState.mode, ksp] = chr(65 + keyOffset)
+			endCase
+			case 1
+				ks[bState.mode, ksp] = chr(66 + keyOffset)
+				reset = true
+			endCase
+			endSelect
+		endif
+		if reset
+			bState.hits = 0
+		else
+			inc bState.hits
+		endif
+	endif
+	if ksp > 0
+		if ksp = 1
+			if len(ks[bState.mode, ksp]) = 1
+				ks[bState.mode, ksp] = ks[bState.mode, ksp] + str(key)
+			else
+				ks[bState.mode, ksp] = str(key)
+			endif							
+		else
+			ks[bState.mode, ksp] = str(key)
+		endif
+	endif
+				
+endFunction
+ 
 // ************************************************ Placement **********************************************************
 
-function placeNumericKeys()
+function placeNumericKeysTxt()
 
 	mt as txtProp_t
 
@@ -37,10 +89,27 @@ function placeNumericKeys()
 
 endFunction
 
+function placeAlphaKeysTxt()
+	
+	mt		as txtProp_t
+	alpha	as string[8] = ["ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STU", "VWX", "YZ"]
+	
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 3.5)
+
+	for i = 3 to 11
+
+		setTextProperties(mt, getSpriteX(sprite.bSmall[i]) + (GetSpriteWidth(sprite.bSmall[i]) / 2), getSpriteY(sprite.bSmall[i]) + 1, 1)
+		CreateText(txt.alpha[i - 3], alpha[i - 3])
+		textDraw(txt.alpha[i - 3], mt)
+
+	next i
+	
+endFunction
+
 function placeNextKeyTxt()
 
 	mt as txtProp_t
-	nextChars as string[4] = ["N", "E", "X", "T"]
+	nextChars as string[3] = ["N", "E", "X", "T"]
 	offsetY as integer = 5
 	
 	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
@@ -58,7 +127,7 @@ endFunction
 function placeCalcKeyTxt()
 
 	mt as txtProp_t
-	calcChars as string[4] = ["C", "A", "L", "C"]
+	calcChars as string[3] = ["C", "A", "L", "C"]
 	offsetY as integer = 5
 	
 	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)

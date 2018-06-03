@@ -2,7 +2,7 @@
  *
  * chores.agc
  *
- * Project: fBus
+ * Project: PS_RangeBearing
  *
  * *******************************************/
 
