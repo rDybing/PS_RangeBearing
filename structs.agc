@@ -48,6 +48,7 @@ endType
 type txt_t
 	ver				as integer
 	num				as integer[12]
+	large			as integer[8]
 endType
 
 type txtProp_t	

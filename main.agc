@@ -97,6 +97,8 @@ function main(dev as device_t)
 	placeButtonsSmall()
 	placeButtonsLarge()
 	placeNumericKeys()
+	placeNextKeyTxt()
+	placeCalcKeyTxt()
 
 	do
 

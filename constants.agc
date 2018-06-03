@@ -7,20 +7,6 @@
  * *******************************************/
  
  function constants()
-/* *******************************************
- *
- * ID Map:
- *
- * 1000 -> 1089: UI text
- * 1090 -> 1099: Input text
- * 1100 -> 1199: Data text
- * 2000 -> 2099: Video
- * 8800 -> 8899: Sounds
- * 8900 -> 8999: Sprites
- * 9000 -> 9099: Media Files Import
- * 9100 -> 9199: Animation frames
- *
- * *******************************************/
 
 	layer.front				= 0
 	layer.A					= 10
@@ -34,14 +20,17 @@
 	for i = 0 to 11
 		txt.num[i]			= 1010 + i
 	next i
+	for i = 0 to 7
+		txt.large[i]		= 1022 + i
+	next i
 
 	// sprites
 	sprite.back				= 9004
 	for i = 0 to 11
 		sprite.bSmall[i] 	= 9010 + i
 	next i
-	sprite.bLarge[0]		= 9023
-	sprite.bLarge[1]		= 9024
+	sprite.bLarge[0]		= 9022
+	sprite.bLarge[1]		= 9023
 
 	// images	
 	media.font				= 9000

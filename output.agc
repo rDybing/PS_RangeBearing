@@ -62,8 +62,8 @@ function placeButtonsLarge()
 	spr.height = -1
 	
 	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge)
-	spr.posY = spr.posY - GetSpriteHeight(sprite.bLArge[0])
-	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLArge)
+	spr.posY = spr.posY - GetSpriteHeight(sprite.bLarge[0])
+	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLarge)
 	
 endFunction
 

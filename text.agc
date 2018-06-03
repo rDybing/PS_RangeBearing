@@ -37,6 +37,42 @@ function placeNumericKeys()
 
 endFunction
 
+function placeNextKeyTxt()
+
+	mt as txtProp_t
+	nextChars as string[4] = ["N", "E", "X", "T"]
+	offsetY as integer = 5
+	
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
+
+	for i = 0 to 3
+		
+		setTextProperties(mt, getSpriteX(sprite.bLarge[1]) + (GetSpriteWidth(sprite.bLarge[1]) / 2), getSpriteY(sprite.bLarge[1]) + (offsetY * i) + 0.75, 1)
+		createText(txt.large[i], nextChars[i])	
+		textDraw(txt.large[i], mt)
+
+	next i
+
+endFunction
+
+function placeCalcKeyTxt()
+
+	mt as txtProp_t
+	calcChars as string[4] = ["C", "A", "L", "C"]
+	offsetY as integer = 5
+	
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
+
+	for i = 0 to 3
+	
+		setTextProperties(mt, getSpriteX(sprite.bLarge[0]) + (GetSpriteWidth(sprite.bLarge[0]) / 2), getSpriteY(sprite.bLarge[0]) + (offsetY * i) + 0.75, 1)
+		createText(txt.large[i + 4], calcChars[i])
+		textDraw(txt.large[i + 4], mt)
+
+	next i
+
+endFunction
+
 // ************************************************ Chores *************************************************************
 
 function fadeText(startTxt as integer, stopTxt as integer, dir as string)
