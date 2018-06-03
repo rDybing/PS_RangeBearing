@@ -107,6 +107,9 @@ function mainScreen(dev as device_t)
 			endCase
 			// --- Key 9 - YZ
 			case sprite.bSmall[11]
+				if spr <> bState.lastKey
+					bState.hits = 0
+				endif
 				setKeyString(spr, keyString, bState, keyStringPosition, 24, 9)
 				activeKey = setKeyHighlight(sprite.bSmall[11], on)
 			endCase
