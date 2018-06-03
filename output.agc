@@ -67,6 +67,28 @@ function placeButtonsLarge()
 	
 endFunction
 
+function setKeyLatchHighlight(mode as integer)
+
+	if mode = POS
+		highLightSprite(sprite.bSmall[0], color[2])
+		highLightSprite(sprite.bSmall[2], color[0])
+	else
+		highLightSprite(sprite.bSmall[0], color[0])
+		highLightSprite(sprite.bSmall[2], color[2])
+	endif
+
+endFunction
+
+function setKeyHighlight(spriteID as integer, mode as integer)
+
+	if mode
+		highLightSprite(spriteID, color[2])
+	else
+		highLightSprite(spriteID, color[0])
+	endif
+
+endFunction spriteID
+ 
 // ************************************************ Chores Functions ***************************************************
 
 function backSetup(sID as integer, depth as integer, spr as spriteProp_t, iID as integer)

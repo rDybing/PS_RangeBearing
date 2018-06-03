@@ -41,6 +41,9 @@
 	media.back				= 9004
 	media.bSmall			= 9010
 	media.bLarge			= 9011
+
+	// sounds
+	media.keyClick			= 1
 	
 endFunction
 

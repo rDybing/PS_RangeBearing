@@ -21,6 +21,7 @@ type media_t
 	back			as integer
 	bSmall			as integer
 	bLarge			as integer
+	keyClick		as integer
 endType
 
 type sprite_t
@@ -113,5 +114,6 @@ type buttonState_t
 	hits			as integer
 	mode			as integer
 	singleDigit		as integer
+	active			as integer
 endType
 

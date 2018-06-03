@@ -18,11 +18,13 @@
 #include "structs.agc"
 #include "constants.agc"
 
-#constant false		= 0
+#constant false	= 0
 #constant true		= 1
 #constant nil		= -1
 #constant POS		= 0
 #constant TGT		= 1
+#constant on		= 1
+#constant off		= 0
 
 global media		as media_t				// constant IDs
 global font			as font_t				// constant IDs
