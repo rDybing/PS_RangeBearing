@@ -13,6 +13,8 @@ function mainScreen(dev as device_t)
 	keyTimer			as timer_t
 	keyString			as string[1, 4]
 	keyStringPosition	as integer
+	blinkTimer			as timer_t
+	blink				as integer
 	
 	placeMainScreen()
 	
@@ -23,6 +25,9 @@ function mainScreen(dev as device_t)
 	bState.mode = POS
 	setKeyLatchHighlight(POS)
 	bState.active = false
+	placeLCDTextNumeric(keyString)
+
+	blinkTimer = setTimer(250)
 	
 	do
 	
@@ -128,16 +133,27 @@ function mainScreen(dev as device_t)
 				bState.active = false
 			else
 				bState.active = true
+				updateLCDText(bState.mode, keyString, keyStringPosition)
 			endif
 
 			PlaySound(media.keyClick)
+
+			for i = 0 to txt.lcdFloating.length
+				SetTextVisible(txt.lcdFloating[i], 1)
+			next i
 			
 		endif
 		if bState.active and getTimer(keyTimer)
 			bState.active = false
 			setKeyHighlight(activeKey, off)
 		endif
-		testKeyString(keyString, keyStringPosition, bState.mode, dev)
+
+		if getTimer(blinkTimer)
+			blink = not blink
+			blinkLCDText(bState.mode, keyStringPosition, blink)
+		endif
+		
+		//testKeyString(keyString, keyStringPosition, bState.mode, dev)
 		sync()
 	
 	loop

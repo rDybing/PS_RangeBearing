@@ -54,6 +54,7 @@ type txt_t
 	large			as integer[8]
 	alpha			as integer[9]
 	lcdFixed		as integer[2]
+	lcdFloating		as integer[9]
 endType
 
 type txtProp_t	

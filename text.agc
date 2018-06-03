@@ -64,7 +64,6 @@ endFunction
 function placeLCDText()
 
 	mt as txtProp_t
-	fudge as float = 0.0
 	out as string[2] = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                                 DISTANCE"]
 
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.font, 1.75)
@@ -74,6 +73,67 @@ function placeLCDText()
 		createText(txt.lcdFixed[i], out[i])
 		textDraw(txt.lcdFixed[i], mt)
 	next i		
+
+endFunction
+
+function placeLCDTextNumeric(ks as string[][])
+
+	mt as txtProp_t
+	posX as float
+	posY as float
+	offsetX = 13
+	offsetXX = 5
+	
+	posX = getTextX(txt.lcdFixed[0]) + 3
+	posY = getTextY(txt.lcdFixed[0]) + 2.2
+	setFontProperties(color[1].r, color[1].g, color[1].b, media.fontB, 3.1)
+
+	k = 0
+	for i = 0 to 1
+		for j = 0 to 4
+			if j > 1				
+				setTextProperties(mt, posX - 11 + (offsetX * j), posY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+				createText(txt.lcdFloating[k], " - " + ks[i, j])
+			else
+				setTextProperties(mt, posX + (offsetXX * j), posY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+				createText(txt.lcdFloating[k], ks[i, j])
+			endif
+			textDraw(txt.lcdFloating[k], mt)
+			inc k
+		next j
+	next i
+
+endFunction
+
+function blinkLCDText(mode as integer, kp as integer, onOff as integer)
+
+	index as integer = 0
+
+	if mode = TGT
+		index = 5
+	endif
+
+	index = index + kp
+	
+	SetTextVisible(txt.lcdFloating[index], onOff)
+
+endFunction
+
+function updateLCDText(mode as integer, ks as string[][], kp as integer)
+
+	index as integer = 0
+
+	if mode = TGT
+		index = 5
+	endif
+
+	index = index + kp
+
+	if kp > 1
+		SetTextString(txt.lcdFloating[index], " - " + ks[mode, kp])
+	else
+		SetTextString(txt.lcdFloating[index], ks[mode, kp])
+	endif
 
 endFunction
 

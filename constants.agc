@@ -29,6 +29,9 @@
 	for i = 0 to 2
 		txt.lcdFixed[i]		= 1039 + i // to 1041
 	next i
+	for i = 0 to 9
+		txt.lcdFloating[i]	= 1042 + i
+	next i
 
 	// sprites
 	sprite.back				= 9004
