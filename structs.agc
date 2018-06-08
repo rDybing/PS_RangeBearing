@@ -18,6 +18,7 @@ endType
 type media_t	
 	font			as integer
 	fontB			as integer
+	fontC			as integer
 	back			as integer
 	bSmall			as integer
 	bLarge			as integer
@@ -58,6 +59,9 @@ type txt_t
 	lcdFixed		as integer[2]
 	lcdFloating		as integer[9]
 	lcdCalc			as integer[1]
+	test			as integer
+	date			as integer
+	expired			as integer[11]
 endType
 
 type txtProp_t	

@@ -34,6 +34,11 @@
 	next i
 	txt.lcdCalc[0]			= 1052
 	txt.lcdCalc[1]			= 1053
+	txt.test				= 1054
+	txt.date				= 1055
+	for i = 0 to 11
+		txt.expired[i]			= 1056 + i
+	next i
 	
 	// sprites
 	sprite.back				= 9004
@@ -50,6 +55,7 @@
 	// images	
 	media.font				= 9000
 	media.fontB				= 9001
+	media.fontC				= 9003
 	media.back				= 9004
 	media.bSmall			= 9010
 	media.bLarge			= 9011

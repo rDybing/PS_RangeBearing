@@ -14,6 +14,7 @@ function importMedia()
 	
 	loadFont(media.font, "BebasKai-Regular.otf")
 	loadFont(media.fontB, "lcd.ttf")
+	LoadFont(media.fontC, "Roboto-Medium.ttf")
 	//loadImage(media.back, "grainyMetal02.jpg")
 	loadImage(media.back, "carbon_background.jpg")
 	loadImage(media.bSmall, "button_small.png")
