@@ -200,7 +200,7 @@ function placeNumericKeysTxt()
 		setTextProperties(mt, getSpriteX(sprite.bSmall[i]) + (GetSpriteWidth(sprite.bSmall[i]) / 2), getSpriteY(sprite.bSmall[i]) + 3.5, 1)
 		select i
 		case 0
-			CreateText(txt.num[i], "POS")
+			CreateText(txt.num[i], "MRT")
 		endCase
 		case 1
 			CreateText(txt.num[i], "0")
@@ -293,9 +293,9 @@ function placeExpiredText()
 	text[1] = "Final version will include"
 	text[2] = "mils setting for all mortars"
 	text[3] = ""
-	text[4] = "Release on app-stores around"
-	text[5] = "the time time the game is"
-	text[6] = "in open beta or released."
+	text[4] = "Release on Google Play Store around"
+	text[5] = "the time Post Scriptum is in open beta"
+	text[6] = "or is released if no open beta."
 	text[7] = ""
 	text[8] = "For feedback and/or sign up to"
 	text[9] = "mailing list to notify of release"
