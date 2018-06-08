@@ -32,6 +32,7 @@ function placeMainScreen()
 	placeAlphaKeysTxt()
 	placeLCD()
 	placeLCDText()
+	placeHexHeads()
 	
 endFunction
 
@@ -93,14 +94,37 @@ function placeButtonsLarge()
 	
 endFunction
 
+function placeHexHeads()
+
+	spr as spriteProp_t
+
+	spr.posX = 1
+	spr.posy = 1
+	spr.width = 5
+	spr.height = -1
+
+	imageSetup(sprite.hexHead[0], layer.D, spr, media.hexHead)
+	spr.posX = 99 - spr.width
+	imageSetup(sprite.hexHead[1], layer.D, spr, media.hexHead)
+	spr.posY = 99 - GetSpriteHeight(sprite.hexHead[0])
+	imageSetup(sprite.hexHead[2], layer.D, spr, media.hexHead)
+	spr.posX = 1
+	imageSetup(sprite.hexHead[3], layer.D, spr, media.hexHead)
+
+endFunction
+
 function setKeyLatchHighlight(mode as integer)
 
 	if mode = POS
 		highLightSprite(sprite.bSmall[0], color[2])
+		highlightText(sprite.bSmall[0], color[2])
 		highLightSprite(sprite.bSmall[2], color[0])
+		highlightText(sprite.bSmall[2], color[0])
 	else
 		highLightSprite(sprite.bSmall[0], color[0])
+		highlightText(sprite.bSmall[0], color[0])
 		highLightSprite(sprite.bSmall[2], color[2])
+		highlightText(sprite.bSmall[2], color[2])
 	endif
 
 endFunction
@@ -109,8 +133,10 @@ function setKeyHighlight(spriteID as integer, mode as integer)
 
 	if mode
 		highLightSprite(spriteID, color[2])
+		highlightText(spriteID, color[2])
 	else
 		highLightSprite(spriteID, color[0])
+		highlightText(spriteID, color[0])
 	endif
 
 endFunction spriteID

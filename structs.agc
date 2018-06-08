@@ -23,6 +23,7 @@ type media_t
 	bLarge			as integer
 	keyClick		as integer
 	lcd				as integer
+	hexHead			as integer
 endType
 
 type sprite_t
@@ -30,6 +31,7 @@ type sprite_t
 	bSmall			as integer[12]
 	bLarge			as integer[2]
 	lcd				as integer
+	hexHead			as integer[3]
 endType
 
 type layer_t

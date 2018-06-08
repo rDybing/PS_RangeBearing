@@ -19,6 +19,7 @@ function importMedia()
 	loadImage(media.bSmall, "button_small.png")
 	loadImage(media.bLarge, "button_large.png")
 	loadImage(media.lcd, "lcdDisplayAdjusted.png")
+	loadImage(media.hexHead, "hexScrewHead.png")
 
 	LoadSound(media.keyClick, "keyClick.wav")
 		

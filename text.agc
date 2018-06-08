@@ -271,6 +271,30 @@ function placeCalcKeyTxt()
 
 endFunction
 
+function highlightText(index as integer, col as color_t)
+
+	index = index - 8000
+
+	// large keys
+	if index = 1022
+		indexRange = 1026
+		for i = indexRange to indexRange + 3
+			SetTextColor(i, col.r, col.g, col.b, col.a)
+		next i
+	elseif index = 1023
+		indexRange = 1022
+		for i = indexRange to indexRange + 3
+			SetTextColor(i, col.r, col.g, col.b, col.a)
+		next i
+	else
+		SetTextColor(index, col.r, col.g, col.b, col.a)
+		if index > 1012 and index < 1022
+			SetTextColor(index + 17, col.r, col.g, col.b, col.a)
+		endif
+	endif
+	
+endFunction
+
 // ************************************************ Chores *************************************************************
 
 function fadeText(startTxt as integer, stopTxt as integer, dir as string)

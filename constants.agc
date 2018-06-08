@@ -38,11 +38,14 @@
 	// sprites
 	sprite.back				= 9004
 	for i = 0 to 11
-		sprite.bSmall[i] 	= 9010 + i
+		sprite.bSmall[i] 	= 9010 + i // to 9021
 	next i
 	sprite.bLarge[0]		= 9022
 	sprite.bLarge[1]		= 9023
 	sprite.lcd				= 9024
+	for i = 0 to 3
+		sprite.hexHead[i]	= 9025 + i // to 9028
+	next i
 
 	// images	
 	media.font				= 9000
@@ -51,6 +54,7 @@
 	media.bSmall			= 9010
 	media.bLarge			= 9011
 	media.lcd				= 9012
+	media.hexHead			= 9013
 
 	// sounds
 	media.keyClick			= 1
@@ -60,10 +64,10 @@ endFunction
 function initColor()
 
 	// white
-	color[0].r = 255
-	color[0].g = 255
-	color[0].b = 255
-	color[0].a = 255
+	color[0].r = 225
+	color[0].g = 225
+	color[0].b = 225
+	color[0].a = 225
 	// black
 	color[1].r = 0
 	color[1].g = 0
