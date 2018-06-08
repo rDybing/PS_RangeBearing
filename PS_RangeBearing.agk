@@ -1,16 +1,17 @@
+
 [apk_settings]
 alias=
-app_icon_path=D:\\Source\\AGK\\msSignFind\\AppIkon.png
+app_icon_path=D:\\Source\\AGK\\PS_RangeBearing\\mortarIconAdjusted.png
 notif_icon_path=
-app_name=Say What?
+app_name=PS Mortar Calc
 app_type=0
 game_circle_api_key=
-keystore_path=D:\\MobileBinaries\\Certs\\sayWhat.keystore
+keystore_path=
 orientation=1
-output_path=D:\\MobileBinaries\\msSignFind.apk
+output_path=D:\\MobileBinaries\\mortarCalc.apk
 ouya_icon_path=
-package_name=com.millasays.saywhat
-permission_flags=519
+package_name=com.rdybing.psmortcalc
+permission_flags=0
 play_app_id=
 sdk_version=1
 version_name=1.0.0
@@ -54,14 +55,14 @@ FILE_10=networkIO.agc;-1
 FILE_11=chores.agc;-1
 
 [files]
-FILE_NAME_0=0;main.agc;767;0
-FILE_NAME_1=0;views.agc;2807;1
-FILE_NAME_2=0;output.agc;1288;2
-FILE_NAME_3=0;input.agc;1638;4
-FILE_NAME_4=0;fileIO.agc;94;5
-FILE_NAME_5=0;structs.agc;95;7
-FILE_NAME_6=1;constants.agc;1253;8
-FILE_NAME_7=0;text.agc;92;3
+FILE_NAME_0=1;main.agc;1277;0
+FILE_NAME_1=0;views.agc;438;1
+FILE_NAME_2=0;output.agc;1997;2
+FILE_NAME_3=0;input.agc;866;4
+FILE_NAME_4=0;fileIO.agc;666;5
+FILE_NAME_5=0;structs.agc;589;7
+FILE_NAME_6=0;constants.agc;286;8
+FILE_NAME_7=0;text.agc;6751;3
 FILE_NAME_8=0;chores.agc;94;6
 
 [project]
