@@ -180,3 +180,28 @@ function initCoord(c ref as coord_t[])
 	c[1].nano[2] = 22.22
 
 endFunction
+
+function initMortar()
+
+	/* From psmc:
+	export const PS_GER_VELOCITY = 108;
+	export const PS_BR1_VELOCITY = 160;
+	export const PS_BR2_VELOCITY = 120;
+	...oddly no shell weight...
+	*/
+
+	mrt as mortar_t[2]
+
+	// German 50mm			Granatwerfer 36
+	// German 80mm			Granatwerfer 34
+	mrt[0].velocity	= 174.0		// m/s
+	mrt[0].shell	= 3.5		// kg
+	// British 3.0"
+	mrt[1].velocity = 200.0		// m/s
+	mrt[1].shell	= 4.5		// kg
+	// British 4.2"			
+	mrt[2].velocity = 223.0		// m/s
+	mrt[2].shell	= 9.0		// kg
+
+endFunction mrt
+

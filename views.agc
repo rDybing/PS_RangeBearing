@@ -18,6 +18,7 @@ function mainScreen(dev as device_t)
 	keyPressed			as integer
 	coord				as coord_t[1]
 	calc				as calc_t
+	mortar				as mortar_t[]
 		
 	placeMainScreen()
 	
@@ -33,6 +34,7 @@ function mainScreen(dev as device_t)
 	placeLCDTextNumeric(keyString)
 	placeCalcText()
 	initCoord(coord)
+	mortar = initMortar()
 	activeKey = sprite.bSmall[0]
 
 	blinkTimer = setTimer(250)
@@ -137,8 +139,8 @@ function mainScreen(dev as device_t)
 			// --- Key CALC
 			case sprite.bLarge[0]
 				activeKey = setKeyHighlight(sprite.bLarge[0], on)
-				calc = calc(coord, keyString)
-				bState.calc = true			
+				calc = calc(coord, keyString, mortar[0])
+				bState.calc = true
 			endCase
 			// --- Key NEXT
 			case sprite.bLarge[1]
@@ -194,78 +196,11 @@ function mainScreen(dev as device_t)
 		
 		//testKeyString(keyString, keyStringPosition, bState.mode, bState.secondDigit, dev)
 		//testXY(calc)
+		testMils(calc.mils)
 		sync()
 	loop
 	
 endFunction
-
-function calc(c as coord_t[], ks as string[][])
-
-	calc 	as calc_t
-	mrtX	as float
-	mrtY	as float
-	tgtX	as float
-	tgtY	as float
-	radians as float
-	coordX	as float
-	coordY	as float
-
-	mrtX = (asc(ks[0, 0]) - 65) * 300
-	mrtX = mrtX + (c[0].mini[val(ks[0, 2]) - 1])
-	mrtX = mrtX + (c[0].micro[val(ks[0, 3]) - 1])
-	mrtX = mrtX + (c[0].nano[val(ks[0, 4]) - 1])
-	mrtY = (val(ks[0, 1]) - 1) * 300
-	mrtY = mrtY + (c[1].mini[val(ks[0, 2]) - 1])
-	mrtY = mrtY + (c[1].micro[val(ks[0, 3]) - 1])
-	mrtY = mrtY + (c[1].nano[val(ks[0, 4]) - 1])
-
-	tgtX = (asc(ks[1, 0]) - 65) * 300
-	tgtX = tgtX + (c[0].mini[val(ks[1, 2]) - 1])
-	tgtX = tgtX + (c[0].micro[val(ks[1, 3]) - 1])
-	tgtX = tgtX + (c[0].nano[val(ks[1, 4]) - 1])
-	tgtY = (val(ks[1, 1]) - 1) * 300
-	tgtY = tgtY + (c[1].mini[val(ks[1, 2]) - 1])
-	tgtY = tgtY + (c[1].micro[val(ks[1, 3]) - 1])
-	tgtY = tgtY + (c[1].nano[val(ks[1, 4]) - 1])
-
-	if tgtX > mrtX
-		coordX = tgtX - mrtX
-	elseif mrtX > tgtX
-		coordX = mrtX - tgtX
-	else
-		coordX = 0.0
-	endif
-
-	if tgtY > mrtY
-		coordY = tgtY - mrtY
-	elseif mrtY > tgtY
-		coordY = mrtY - tgtY
-	else
-		coordY = 0.0
-	endif
-
-	calc.range = sqrt((coordX ^ 2) + (coordY ^ 2))
-
-    coordY = tgtY - mrtY
-    coordX = tgtX - mrtX
-    //calc.angle = angleTrunc(atan2(coordX, coordY))
-    calc.angle = atanfull(coordX, coordY)
-
-	calc.mX = str(mrtX)
-	calc.mY = str(mrtY)
-	calc.tX = str(tgtX)
-	calc.tY = str(tgtY)
-	calc.a = str(calc.angle)
-
-endFunction calc
-
-/*
-function angleTrunc(a as float)
-    while a < 0.0
-        a = a + (Pi * 2.0)
-	endWhile
-endFunction a
-*/
 
 function getSecondDigit(ksp as integer, sd as integer)
 
@@ -276,6 +211,12 @@ function getSecondDigit(ksp as integer, sd as integer)
 	endif
 	
 endFunction out
+
+function testMils(mils as integer)
+
+	print("Mils: " + str(mils))
+
+endFunction
 
 function testKeyString(ks as string[][], ksp as integer, mode as integer, sd as integer, dev as device_t)
 	

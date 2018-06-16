@@ -144,10 +144,16 @@ endType
 type calc_t
 	range			as float
 	angle			as float
+	mils			as integer
 	mX				as string
 	mY				as string
 	tX				as string
 	tY				as string
 	a				as string
+endType
+
+type mortar_t
+	velocity		as float
+	shell			as float
 endType
 

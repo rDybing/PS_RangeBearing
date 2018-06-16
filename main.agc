@@ -7,6 +7,8 @@
  * slack:  rdybing
  * github: rDybing
  *
+ * donate: https://www.paypal.me/Dybing
+ *
  * *******************************************/
 
 #include "views.agc"
@@ -18,14 +20,15 @@
 #include "structs.agc"
 #include "constants.agc"
 
-#constant false	= 0
-#constant true		= 1
-#constant nil		= -1
-#constant POS		= 0
-#constant TGT		= 1
-#constant on		= 1
-#constant off		= 0
-#constant Pi		= 3.14159
+#constant false		= 0
+#constant true			= 1
+#constant nil			= -1
+#constant POS			= 0
+#constant TGT			= 1
+#constant on			= 1
+#constant off			= 0
+#constant Pi			= 3.14159
+#constant Gravity		= 9.81
 
 global media		as media_t				// constant IDs
 global font		as font_t				// constant IDs
