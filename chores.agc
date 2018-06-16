@@ -72,7 +72,11 @@ function calcMortarMils(distance as integer, velocity as float)
 	dist as float
 	dist = distance
 
-	degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * (((Gravity * dist) ^ 2) + (2 * 0 * velocity) ^ 2)))) / (Gravity * dist))
+	// Don't care about height difference between mortar and target
+	degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * ((Gravity * dist) ^ 2)))) / (Gravity * dist))
+
+	// Do care about height difference between mortar and target
+	//degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * (((Gravity * dist) ^ 2) + (2 * y * velocity) ^ 2)))) / (Gravity * dist))
 
 	mils = (degrees * (Pi / 180)) / (Pi / 3200)
 
