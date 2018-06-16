@@ -19,6 +19,7 @@
 #include "chores.agc"
 #include "structs.agc"
 #include "constants.agc"
+#include "tests.agc"
 
 #constant false		= 0
 #constant true			= 1
