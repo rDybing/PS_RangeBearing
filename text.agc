@@ -271,53 +271,6 @@ function placeCalcKeyTxt()
 
 endFunction
 
-function placeTestDateText(date as string)
-	
-	mt as txtProp_t
-	
-	setFontProperties(color[2].r, color[2].g, color[2].b, media.font, 3)
-	setTextProperties(mt, 50, 30, 1)
-	CreateText(txt.test, "This test version will expire on:")
-	textDraw(txt.test, mt)
-	setTextProperties(mt, 50, 33, 1)
-	CreateText(txt.date, "Tuesday " + date)
-	textDraw(txt.date, mt)
-	
-endFunction
-
-function placeExpiredText()
-	
-	mt as txtProp_t
-	text as string[11]
-	text[0] = "Test Version Expired"
-	text[1] = "Final version will include"
-	text[2] = "mils setting for all mortars"
-	text[3] = ""
-	text[4] = "Release on Google Play Store around"
-	text[5] = "the time Post Scriptum is in open beta"
-	text[6] = "or is released if no open beta."
-	text[7] = ""
-	text[8] = "For feedback and/or sign up to"
-	text[9] = "mailing list to notify of release"
-	text[10] = "contact on reddit PM:"
-	text[11] = "u/Zy14rk"
-	
-	mt.startX = 50
-	mt.startY = 38
-	mt.offsetY = 3
-	
-	setFontProperties(color[0].r, color[0].g, color[0].b, media.fontC, 3)
-	setTextProperties(mt, 50, mt.startY, 1)
-	
-	for i = 0 to text.length
-		CreateText(txt.expired[i], text[i])
-		textDraw(txt.expired[i], mt)
-		mt.startY = mt.startY + mt.offsetY
-	next i
-		
-	
-endFunction
-
 function highlightText(index as integer, col as color_t)
 
 	index = index - 8000

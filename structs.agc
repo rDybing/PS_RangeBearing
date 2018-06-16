@@ -131,6 +131,7 @@ type buttonState_t
 	singleDigit		as integer
 	active			as integer
 	calc			as integer
+	secondDigit		as integer
 endType
 
 type coord_t

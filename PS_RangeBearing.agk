@@ -8,7 +8,7 @@ app_type=0
 game_circle_api_key=
 keystore_path=
 orientation=1
-output_path=D:\\MobileBinaries\\mortarCalc.apk
+output_path=D:\\MobileBinaries\\mortarCalcTest.apk
 ouya_icon_path=
 package_name=com.rdybing.psmortcalc
 permission_flags=0
@@ -55,14 +55,14 @@ FILE_10=networkIO.agc;-1
 FILE_11=chores.agc;-1
 
 [files]
-FILE_NAME_0=1;main.agc;1277;0
-FILE_NAME_1=0;views.agc;438;1
-FILE_NAME_2=0;output.agc;1997;2
+FILE_NAME_0=0;main.agc;1277;0
+FILE_NAME_1=1;views.agc;3985;1
+FILE_NAME_2=0;output.agc;2779;2
 FILE_NAME_3=0;input.agc;866;4
 FILE_NAME_4=0;fileIO.agc;666;5
 FILE_NAME_5=0;structs.agc;589;7
 FILE_NAME_6=0;constants.agc;286;8
-FILE_NAME_7=0;text.agc;6751;3
+FILE_NAME_7=0;text.agc;146;3
 FILE_NAME_8=0;chores.agc;94;6
 
 [project]
