@@ -26,10 +26,12 @@ function placeMainScreen()
 	
 	placeButtonsSmall()
 	placeButtonsLarge()
+	placeButtonsUpper()
 	placeNumericKeysTxt()
 	placeNextKeyTxt()
 	placeCalcKeyTxt()
 	placeAlphaKeysTxt()
+	placeUpperKeysTxt()
 	placeLCD()
 	placeLCDText()
 	placeHexHeads()
@@ -43,7 +45,7 @@ function placeLCD()
 	spr.posX = position.lcdStartX
 	spr.posY = position.lcdStartY
 	spr.width = position.lcdWidth
-	spr.height = -1
+	spr.height = spr.width / 2.75
 
 	imageSetup(sprite.lcd, layer.C, spr, media.lcd)
 
@@ -91,6 +93,24 @@ function placeButtonsLarge()
 	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge)
 	spr.posY = spr.posY - GetSpriteHeight(sprite.bLarge[0])
 	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLarge)
+	
+endFunction
+
+function placeButtonsUpper()
+	
+	spr as spriteProp_t
+	
+	spr.posX = position.bStartX
+	spr.posY = position.bUpperY
+	spr.width = position.bWidth * 2
+	spr.height = -1
+	
+	imageSetup(sprite.bAbout, layer.D, spr, media.bLarge2)
+	spr.width = position.bWidth
+	spr.posX = spr.posX + (spr.width * 2)
+	imageSetup(sprite.bMrtPrev, layer.D, spr, media.bSmall)
+	spr.posX = spr.posX + spr.width
+	imageSetup(sprite.bMrtNext, layer.D, spr, media.bSmall)
 	
 endFunction
 

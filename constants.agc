@@ -26,19 +26,20 @@
 	for i = 0 to 8
 		txt.alpha[i]		= 1030 + i // to 1038
 	next i
-	for i = 0 to 2
-		txt.lcdFixed[i]		= 1039 + i // to 1041
+	for i = 0 to 3
+		txt.lcdFixed[i]		= 1039 + i // to 1042
 	next i
 	for i = 0 to 9
-		txt.lcdFloating[i]	= 1042 + i // to 1051
+		txt.lcdFloating[i]	= 1043 + i // to 1052
 	next i
-	txt.lcdCalc[0]			= 1052
-	txt.lcdCalc[1]			= 1053
-	txt.test				= 1054
-	txt.date				= 1055
-	for i = 0 to 11
-		txt.expired[i]			= 1056 + i
-	next i
+	txt.lcdCalc[0]			= 1053
+	txt.lcdCalc[1]			= 1054
+	txt.lcdCalc[2]			= 1055
+	txt.test				= 1056
+	txt.date				= 1057
+	txt.bAbout				= 1058
+	txt.bMrtPrev			= 1059
+	txt.bMrtNext			= 1060
 	
 	// sprites
 	sprite.back				= 9004
@@ -51,6 +52,9 @@
 	for i = 0 to 3
 		sprite.hexHead[i]	= 9025 + i // to 9028
 	next i
+	sprite.bAbout			= 9029
+	sprite.bMrtPrev			= 9030
+	sprite.bMrtNext			= 9031
 
 	// images	
 	media.font				= 9000
@@ -59,8 +63,9 @@
 	media.back				= 9004
 	media.bSmall			= 9010
 	media.bLarge			= 9011
-	media.lcd				= 9012
-	media.hexHead			= 9013
+	media.bLarge2			= 9012
+	media.lcd				= 9013
+	media.hexHead			= 9014
 
 	// sounds
 	media.keyClick			= 1
@@ -93,18 +98,22 @@ function initColor()
 endFunction
 
 function initPos(aspect as float)
-	
-	position.bStartX		= 10.0
-	position.bStartY		= 80.0
-	position.bWidth			= 20.0
+
+	position.bStartY		= 85.0
+	position.bUpperY		= 4.0
 	position.lcdStartX		= 7.0
-	position.lcdStartY		= 4.0
+	position.lcdStartY		= 17.0
 	position.lcdWidth		= 86.0
+	position.lcdTxtDivY		= 5.0
 
 	if aspect > 0.65
-		position.lcdFudgeY = 1.5
+		position.lcdFudgeY		= 1.5
+		position.bStartX		= 20.0
+		position.bWidth			= 15.0
 	else
-		position.lcdFudgeY = 0.0
+		position.lcdFudgeY		= 0.0
+		position.bStartX		= 10.0
+		position.bWidth			= 20.0
 	endif
 	
 endFunction

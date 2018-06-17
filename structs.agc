@@ -22,6 +22,7 @@ type media_t
 	back			as integer
 	bSmall			as integer
 	bLarge			as integer
+	bLarge2			as integer
 	keyClick		as integer
 	lcd				as integer
 	hexHead			as integer
@@ -31,6 +32,9 @@ type sprite_t
 	back			as integer
 	bSmall			as integer[12]
 	bLarge			as integer[2]
+	bAbout			as integer
+	bMrtPrev		as integer
+	bMrtNext		as integer
 	lcd				as integer
 	hexHead			as integer[3]
 endType
@@ -56,12 +60,14 @@ type txt_t
 	num				as integer[12]
 	large			as integer[8]
 	alpha			as integer[9]
-	lcdFixed		as integer[2]
+	lcdFixed		as integer[3]
 	lcdFloating		as integer[9]
-	lcdCalc			as integer[1]
+	lcdCalc			as integer[2]
 	test			as integer
 	date			as integer
-	expired			as integer[11]
+	bAbout			as integer
+	bMrtPrev		as integer
+	bMrtNext		as integer
 endType
 
 type txtProp_t	
@@ -105,11 +111,13 @@ endType
 type position_t
 	bStartX			as float
 	bStartY			as float
+	bUpperY			as float
 	bWidth			as float
 	lcdStartX		as float
 	lcdStartY		as float
 	lcdWidth		as float
 	lcdFudgeY		as float
+	lcdTxtDivY		as float
 endType
 
 type timer_t

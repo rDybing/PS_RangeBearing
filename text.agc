@@ -64,18 +64,22 @@ endFunction
 function placeLCDText()
 
 	mt as txtProp_t
-	out as string[2]
+	out as string[3]
 	
+	out[0] = "MORTAR POSITION"
+	out[1] = "TARGET POSITION"
 	if position.lcdFudgeY = 0.0
-		out = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                        DISTANCE"]
+		out[2] = "BEARING                                        DISTANCE"
+		out[3] = "MILS                                                MORTAR MODEL"
 	else
-		out = ["MORTAR POSITION", "TARGET POSITION", "BEARING                                                            DISTANCE"]
+		out[2] = "BEARING                                                            DISTANCE"
+		out[3] = "MILS                                                                    MORTAR MODEL"
 	endif
 
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.font, 1.75)
 	
-	for i = 0 to 2
-		setTextProperties(mt, position.lcdStartX + 10.5, position.lcdStartY + 3.5 + position.lcdFudgeY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+	for i = 0 to 3
+		setTextProperties(mt, position.lcdStartX + 12.0, position.lcdStartY + 3.0 + position.lcdFudgeY + ((GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * i), 0)
 		createText(txt.lcdFixed[i], out[i])
 		textDraw(txt.lcdFixed[i], mt)
 	next i		
@@ -98,10 +102,10 @@ function placeLCDTextNumeric(ks as string[][])
 	for i = 0 to 1
 		for j = 0 to 4
 			if j > 1				
-				setTextProperties(mt, posX - 11 + (offsetX * j), posY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+				setTextProperties(mt, posX - 11 + (offsetX * j), posY + ((GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * i), 0)
 				createText(txt.lcdFloating[k], " - " + ks[i, j])
 			else
-				setTextProperties(mt, posX + (offsetXX * j), posY + ((GetSpriteHeight(sprite.lcd) / 4.25) * i), 0)
+				setTextProperties(mt, posX + (offsetXX * j), posY + ((GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * i), 0)
 				createText(txt.lcdFloating[k], ks[i, j])
 			endif
 			textDraw(txt.lcdFloating[k], mt)
@@ -120,7 +124,7 @@ function placeCalcText()
 	offsetXX = 6
 	
 	posX = getTextX(txt.lcdFixed[0]) + 1
-	posY = getTextY(txt.lcdFixed[0]) + (GetSpriteHeight(sprite.lcd) / 4.25) * 2.37
+	posY = getTextY(txt.lcdFixed[0]) + (GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * 2.37
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.fontB, 3.1)
 
 	setTextProperties(mt, posX - 11 + (offsetX), posY, 0)
@@ -129,13 +133,18 @@ function placeCalcText()
 	setTextProperties(mt, 50, posY, 0)
 	createText(txt.lcdCalc[1], "0000m")
 	textDraw(txt.lcdCalc[1], mt)
-
+	posY = getTextY(txt.lcdFixed[0]) + (GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * 3.35
+	setTextProperties(mt, posX - 11 + (offsetX), posY, 0)	
+	createText(txt.lcdCalc[2], "1600")
+	textDraw(txt.lcdCalc[2], mt)
+	
 endFunction
 
 function updateCalcText(c as calc_t)
 
 	bearing	as string
 	range	as string
+	mils	as string
 	
 	bearing = str(c.angle, 1) + "'"
 	if len(bearing) = 4
@@ -145,16 +154,17 @@ function updateCalcText(c as calc_t)
 	endif
 	SetTextString(txt.lcdCalc[0], bearing)
 	
-	range = str(c.range, 0) + "m"
-	if len(range) = 2
-		range = "000" + range
-	elseif len(range) = 3
-		range = "00" + range
-	elseif len(range) = 4
-		range = "0" + range
-	endif
-	SetTextString(txt.lcdCalc[1], range)
+	range = str(c.range, 0)
+	range = padZeroes(range)
+	range = range + "m"
 
+	SetTextString(txt.lcdCalc[1], range)
+	
+	mils = str(c.mils)
+	mils = padZeroes(mils)
+	
+	SetTextString(txt.lcdCalc[2], mils)
+	
 endFunction
 
 function blinkLCDText(mode as integer, kp as integer, onOff as integer)
@@ -271,6 +281,25 @@ function placeCalcKeyTxt()
 
 endFunction
 
+function placeUpperKeysTxt()
+
+	mt as txtProp_t
+	yOffset as float = 2.5
+
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
+
+	setTextProperties(mt, getSpriteX(sprite.bAbout) + (GetSpriteWidth(sprite.bAbout) / 2), getSpriteY(sprite.bAbout) + yOffset, 1)
+	CreateText(txt.bAbout, "ABOUT")
+	textDraw(txt.bAbout, mt)
+	setTextProperties(mt, getSpriteX(sprite.bMrtPrev) + (GetSpriteWidth(sprite.bMrtPrev) / 2), getSpriteY(sprite.bMrtPrev) + yOffset, 1)
+	CreateText(txt.bMrtPrev, "<<")
+	textDraw(txt.bMrtPrev, mt)
+	setTextProperties(mt, getSpriteX(sprite.bMrtNext) + (GetSpriteWidth(sprite.bMrtNext) / 2), getSpriteY(sprite.bMrtNext) + yOffset, 1)
+	CreateText(txt.bMrtNext, ">>")
+	textDraw(txt.bMrtNext, mt)
+
+endFunction
+
 function highlightText(index as integer, col as color_t)
 
 	index = index - 8000
@@ -297,40 +326,22 @@ endFunction
 
 // ************************************************ Chores *************************************************************
 
-function fadeText(startTxt as integer, stopTxt as integer, dir as string)
+function padZeroes(in as string)
 	
-	incr as integer
+	out as string
 	
-	select dir
-	case "in"
-		start = 0
-		stop = 255
-		incr = 16
-	endCase
-	case "out"
-		start = 255
-		stop = 0
-		incr = -16
-	endCase
-	endSelect
-	// fade in/out
-	for i = start to stop step incr
-		for j = startTxt to stopTxt
-			SetTextColorAlpha(j, i)
-		next j
-		sync()
-	next i
-	
-	for i = startTxt to stopTxt
-		SetTextColorAlpha(i, stop)
-	next i
-	
-	if dir = "out"
-		clearText(startTxt, stopTxt)
+	if len(in) = 1
+		out = "000" + in
+	elseif len(in) = 2
+		out = "00" + in
+	elseif len(in) = 3
+		out = "0" + in
+	elseif len(in) = 4
+		out = in
 	endif
 	
-endFunction
- 
+endFunction out
+
 function textDraw(id as integer, mt as txtProp_t)
 
 	SetTextFont(id, font.id)
