@@ -94,6 +94,11 @@ function initColor()
 	color[3].g = 110
 	color[3].b = 70
 	color[3].a = 255
+	// full color
+	color[4].r = 255
+	color[4].g = 255
+	color[4].b = 255
+	color[4].a = 255
 	
 endFunction
 

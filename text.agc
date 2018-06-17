@@ -70,10 +70,10 @@ function placeLCDText()
 	out[1] = "TARGET POSITION"
 	if position.lcdFudgeY = 0.0
 		out[2] = "BEARING                                        DISTANCE"
-		out[3] = "MILS                                                MORTAR MODEL"
+		out[3] = "MILS                                               MORTAR MODEL"
 	else
 		out[2] = "BEARING                                                            DISTANCE"
-		out[3] = "MILS                                                                    MORTAR MODEL"
+		out[3] = "MILS                                                                   MORTAR MODEL"
 	endif
 
 	setFontProperties(color[1].r, color[1].g, color[1].b, media.font, 1.75)

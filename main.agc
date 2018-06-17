@@ -21,7 +21,7 @@
 #include "constants.agc"
 #include "tests.agc"
 
-#constant false			= 0
+#constant false		= 0
 #constant true			= 1
 #constant nil			= -1
 #constant POS			= 0
@@ -32,12 +32,12 @@
 #constant Gravity		= 9.81
 
 global media		as media_t				// constant IDs
-global font			as font_t				// constant IDs
+global font		as font_t				// constant IDs
 global layer		as layer_t				// constant layer values
 global sprite		as sprite_t				// constant IDs
 global txt			as txt_t				// constant IDs
-global color		as color_t[3]			// constant after init
-global position		as position_t			// constant after init
+global color		as color_t[4]			// constant after init
+global position	as position_t			// constant after init
 
 aspect				as float				// constant after init
 deviceX				as integer				// constant after init

@@ -17,8 +17,7 @@ function setBackground()
 	spr.width = 100
 	spr.height = 100
 	
-	imageSetup(sprite.back, layer.back, spr, media.back)
-	SetSpriteColor(sprite.back, color[3].r, color[3].g, color[3].b, color[3].a)
+	imageSetup(sprite.back, layer.back, spr, media.back, color[3])
 
 endFunction
 
@@ -47,7 +46,7 @@ function placeLCD()
 	spr.width = position.lcdWidth
 	spr.height = spr.width / 2.75
 
-	imageSetup(sprite.lcd, layer.C, spr, media.lcd)
+	imageSetup(sprite.lcd, layer.C, spr, media.lcd, color[4])
 
 endFunction
 
@@ -73,7 +72,7 @@ function placeButtonsSmall()
 		
 		spr.posX = position.bStartX + (spr.width * newRow)
 			
-		imageSetup(sprite.bSmall[i], layer.D, spr, media.bSmall)
+		imageSetup(sprite.bSmall[i], layer.D, spr, media.bSmall, color[0])
 		
 		inc newLine
 		inc newRow
@@ -90,9 +89,9 @@ function placeButtonsLarge()
 	spr.width = position.bWidth
 	spr.height = -1
 	
-	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge)
+	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge, color[0])
 	spr.posY = spr.posY - GetSpriteHeight(sprite.bLarge[0])
-	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLarge)
+	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLarge, color[0])
 	
 endFunction
 
@@ -105,12 +104,12 @@ function placeButtonsUpper()
 	spr.width = position.bWidth * 2
 	spr.height = -1
 	
-	imageSetup(sprite.bAbout, layer.D, spr, media.bLarge2)
+	imageSetup(sprite.bAbout, layer.D, spr, media.bLarge2, color[0])
 	spr.width = position.bWidth
 	spr.posX = spr.posX + (spr.width * 2)
-	imageSetup(sprite.bMrtPrev, layer.D, spr, media.bSmall)
+	imageSetup(sprite.bMrtPrev, layer.D, spr, media.bSmall, color[0])
 	spr.posX = spr.posX + spr.width
-	imageSetup(sprite.bMrtNext, layer.D, spr, media.bSmall)
+	imageSetup(sprite.bMrtNext, layer.D, spr, media.bSmall, color[0])
 	
 endFunction
 
@@ -123,13 +122,13 @@ function placeHexHeads()
 	spr.width = 5
 	spr.height = -1
 
-	imageSetup(sprite.hexHead[0], layer.D, spr, media.hexHead)
+	imageSetup(sprite.hexHead[0], layer.D, spr, media.hexHead, color[4])
 	spr.posX = 99 - spr.width
-	imageSetup(sprite.hexHead[1], layer.D, spr, media.hexHead)
+	imageSetup(sprite.hexHead[1], layer.D, spr, media.hexHead, color[4])
 	spr.posY = 99 - GetSpriteHeight(sprite.hexHead[0])
-	imageSetup(sprite.hexHead[2], layer.D, spr, media.hexHead)
+	imageSetup(sprite.hexHead[2], layer.D, spr, media.hexHead, color[4])
 	spr.posX = 1
-	imageSetup(sprite.hexHead[3], layer.D, spr, media.hexHead)
+	imageSetup(sprite.hexHead[3], layer.D, spr, media.hexHead, color[4])
 
 endFunction
 
@@ -163,7 +162,7 @@ endFunction spriteID
  
 // ************************************************ Chores Functions ***************************************************
 
-function backSetup(sID as integer, depth as integer, spr as spriteProp_t, iID as integer)
+function imageSetup(sID as integer, depth as integer, spr as spriteProp_t, iID as integer, c as color_t)
 
 	if GetSpriteExists(sID) = true
 		DeleteSprite(sID)
@@ -175,55 +174,8 @@ function backSetup(sID as integer, depth as integer, spr as spriteProp_t, iID as
 	SetSpriteDepth(sID, depth)
 	SetSpriteVisible(sID, 1)
 	SetSpriteSize(sID, spr.width, spr.height)
+	SetSpriteColor(sID, c.r, c.g, c.b, c.a)
 
-endFunction
-
-function imageSetup(sID as integer, depth as integer, spr as spriteProp_t, iID as integer)
-
-	if GetSpriteExists(sID) = true
-		DeleteSprite(sID)
-	endif
-
-	CreateSprite(sID, iID)
-	SetSpritePosition(sID, spr.posX, spr.posY)
-	SetSpriteColorAlpha(sID, 255)
-	SetSpriteDepth(sID, depth)
-	SetSpriteVisible(sID, 1)
-	SetSpriteSize(sID, spr.width, spr.height)
-
-endFunction
-
-function spriteSetup(sID as integer, depth as integer, spr as spriteProp_t, iID0 as integer, iID1 as integer)
-	
-	if GetSpriteExists(sID) = true
-		DeleteSprite(sID)
-	endif
-
-	CreateSprite(sID, iID0)
-	AddSpriteAnimationFrame(sID, iID0)
-	AddSpriteAnimationFrame(sID, iID1)
-	SetSpritePosition(sID, spr.posX, spr.posY)
-	SetSpriteColorAlpha(sID, 255)
-	SetSpriteDepth(sID, depth)
-	SetSpriteFrame(sID, 1)
-	SetSpriteVisible(sID, 1)
-	SetSpriteSize(sID, spr.width, -1)
-
-endFunction
-
-function spriteFromDot(sID as integer, depth as integer, spr as spriteProp_t, image as integer, col as color_t)
-	
-	if GetSpriteExists(sID) = true
-		DeleteSprite(sID)
-	endif
-
-	createSprite(sID, image)
-	setSpritePosition(sID, spr.posX, spr.posY)
-	setSpriteColor(sID, col.r, col.g, col.b, col.a)
-	setSpriteDepth(sID, depth)
-	setSpriteVisible(sID, 1)
-	setSpriteSize(sID, spr.width, spr.height)
-	
 endFunction
 
 function clearSprites(start as integer, stop as integer)
@@ -240,16 +192,4 @@ function highlightSprite(sprID as integer, col as color_t)
 	
 	SetSpriteColor(sprID, col.r, col.g, col.b, col.a)
 	
-endFunction
-
-function swapSprites(start as integer, stop as integer, in as integer)
-	
-	for i = start to stop
-		if i <> in
-			SetSpriteFrame(i, 1)
-		else
-			SetSpriteFrame(i, 2)
-		endif
-	next i
-				
 endFunction
