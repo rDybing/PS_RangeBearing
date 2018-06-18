@@ -87,7 +87,7 @@ function placeLCDText()
 endFunction
 
 function placeLCDTextNumeric(ks as string[][])
-
+	
 	mt as txtProp_t
 	posX as float
 	posY as float
@@ -115,7 +115,7 @@ function placeLCDTextNumeric(ks as string[][])
 
 endFunction
 
-function placeCalcText()
+function placeCalcText(mrt as mortar_t)
 
 	mt as txtProp_t
 	posX as float
@@ -137,7 +137,17 @@ function placeCalcText()
 	setTextProperties(mt, posX - 11 + (offsetX), posY, 0)	
 	createText(txt.lcdCalc[2], "1600")
 	textDraw(txt.lcdCalc[2], mt)
+	setTextProperties(mt, 50, posY, 0)
+	createText(txt.mrtModel, mrt.model)
+	textDraw(txt.mrtModel, mt)
 	
+endFunction
+
+function updateMortarModelText(mrt as mortar_t, mils as integer)
+
+	SetTextString(txt.mrtModel, mrt.model)
+	SetTextString(txt.lcdCalc[2], str(mils))
+
 endFunction
 
 function updateCalcText(c as calc_t)
@@ -315,6 +325,12 @@ function highlightText(index as integer, col as color_t)
 		for i = indexRange to indexRange + 3
 			SetTextColor(i, col.r, col.g, col.b, col.a)
 		next i
+	elseif index = 1029
+		SetTextColor(1058, col.r, col.g, col.b, col.a)
+	elseif index = 1030
+		SetTextColor(1059, col.r, col.g, col.b, col.a)
+	elseif index = 1031
+		SetTextColor(1060, col.r, col.g, col.b, col.a)
 	else
 		SetTextColor(index, col.r, col.g, col.b, col.a)
 		if index > 1012 and index < 1022

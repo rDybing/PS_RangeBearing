@@ -40,6 +40,7 @@
 	txt.bAbout				= 1058
 	txt.bMrtPrev			= 1059
 	txt.bMrtNext			= 1060
+	txt.mrtModel			= 1061
 	
 	// sprites
 	sprite.back				= 9004
@@ -209,13 +210,13 @@ function initMortar()
 	// German 50mm			Granatwerfer 36
 	// German 80mm			Granatwerfer 34
 	mrt[0].velocity	= 174.0		// m/s
-	mrt[0].shell	= 3.5		// kg
+	mrt[0].model	= "GW 34"
 	// British 3.0"
 	mrt[1].velocity = 200.0		// m/s
-	mrt[1].shell	= 4.5		// kg
+	mrt[1].model	= "3 INCH"
 	// British 4.2"			
 	mrt[2].velocity = 223.0		// m/s
-	mrt[2].shell	= 9.0		// kg
+	mrt[2].model	= "4.2 INCH"
 
 endFunction mrt
 

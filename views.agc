@@ -19,9 +19,12 @@ function mainScreen(dev as device_t)
 	coord				as coord_t[1]
 	calc				as calc_t
 	mortar				as mortar_t[]
-		
+	mrtIndex			as integer
+
 	placeMainScreen()
 	
+	mortar = initMortar()
+	mrtIndex = 0
 	bState.latch[0] = true
 	bState.latch[1] = false
 	bState.calc = false
@@ -32,9 +35,8 @@ function mainScreen(dev as device_t)
 	setKeyLatchHighlight(POS)
 	bState.active = false
 	placeLCDTextNumeric(keyString)
-	placeCalcText()
+	placeCalcText(mortar[mrtIndex])
 	initCoord(coord)
-	mortar = initMortar()
 	activeKey = sprite.bSmall[0]
 
 	blinkTimer = setTimer(250)
@@ -139,7 +141,7 @@ function mainScreen(dev as device_t)
 			// --- Key CALC
 			case sprite.bLarge[0]
 				activeKey = setKeyHighlight(sprite.bLarge[0], on)
-				calc = calc(coord, keyString, mortar[0])
+				calc = calc(coord, keyString, mortar[mrtIndex])
 				bState.calc = true
 			endCase
 			// --- Key NEXT
@@ -159,6 +161,33 @@ function mainScreen(dev as device_t)
 				endif
 				activeKey = setKeyHighlight(sprite.bLarge[1], on)
 				bState.singleDigit = true		
+			endCase
+			// --- key << Prev Mortar Model
+			case sprite.bMrtPrev
+				activeKey = setKeyHighlight(sprite.bMrtPrev, on)
+				if mrtIndex = 0
+					mrtIndex = 2
+				else
+					dec mrtIndex
+				endif
+				calc.mils = calcMortarMils(calc.range, mortar[mrtIndex])
+				updateMortarModelText(mortar[mrtIndex], calc.mils)			
+			endCase
+			// --- key >> Next Mortar Model
+			case sprite.bMrtNext
+				activeKey = setKeyHighlight(sprite.bMrtNext, on)
+				if mrtIndex = 2
+					mrtIndex = 0
+				else
+					inc mrtIndex
+				endif
+				calc.mils = calcMortarMils(calc.range, mortar[mrtIndex])
+				updateMortarModelText(mortar[mrtIndex], calc.mils)				
+			endCase
+			// --- key ABOUT
+			case sprite.bAbout
+				activeKey = setKeyHighlight(sprite.bAbout, on)
+				OpenBrowser("https://dybings.blogspot.com/2018/06/post-scriptum-mortar-calculator.html")
 			endCase
 			case default
 				keyPressed = false

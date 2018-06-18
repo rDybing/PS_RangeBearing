@@ -30,6 +30,7 @@
 #constant off			= 0
 #constant Pi			= 3.14159
 #constant Gravity		= 9.81
+#constant MaxMortars	= 2
 
 global media		as media_t				// constant IDs
 global font		as font_t				// constant IDs

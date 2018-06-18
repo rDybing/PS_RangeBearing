@@ -68,6 +68,7 @@ type txt_t
 	bAbout			as integer
 	bMrtPrev		as integer
 	bMrtNext		as integer
+	mrtModel		as integer
 endType
 
 type txtProp_t	
@@ -75,16 +76,7 @@ type txtProp_t
 	startX			as float
 	offsetX			as float
 	offsetY			as float
-	offset 			as integer
 	align 			as integer
-	mainItems		as integer
-	menuItems		as integer
-	editItems		as integer
-	netItems		as integer
-	size			as float
-	active			as integer
-	maxLines		as integer
-	lang			as integer
 endType
 
 type spriteProp_t
@@ -162,6 +154,6 @@ endType
 
 type mortar_t
 	velocity		as float
-	shell			as float
+	model			as string
 endType
 

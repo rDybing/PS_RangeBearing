@@ -55,7 +55,7 @@ function calc(c as coord_t[], ks as string[][], mrt as mortar_t)
     coordY = tgtY - mrtY
     coordX = tgtX - mrtX
     calc.angle = atanfull(coordX, coordY)
-	calc.mils = calcMortarMils(calc.range, mrt.velocity)
+	calc.mils = calcMortarMils(calc.range, mrt)
 
 	calc.mX = str(mrtX)
 	calc.mY = str(mrtY)
@@ -65,12 +65,15 @@ function calc(c as coord_t[], ks as string[][], mrt as mortar_t)
 
 endFunction calc
 
-function calcMortarMils(distance as integer, velocity as float)
+function calcMortarMils(distance as integer, mrt as mortar_t)
 
-	mils as float
-	degrees as float
-	dist as float
-	dist = distance
+	mils		as float
+	degrees		as float
+	dist		as float
+	velocity	as float
+	
+	dist		= distance
+	velocity	= mrt.velocity
 
 	// Don't care about height difference between mortar and target
 	degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * ((Gravity * dist) ^ 2)))) / (Gravity * dist))
