@@ -139,13 +139,31 @@ function mainScreen(dev as device_t)
 				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
 			endCase
 			// --- Key CALC
-			case sprite.bLarge[0]
-				activeKey = setKeyHighlight(sprite.bLarge[0], on)
+			case sprite.bCalc
+				activeKey = setKeyHighlight(sprite.bCalc, on)
 				calc = calc(coord, keyString, mortar[mrtIndex])
 				bState.calc = true
 			endCase
+			// --- PREV
+			case sprite.bCoordPrev
+				if keyStringPosition = 1
+					if val(keyString[0, 1]) = 0
+						keyString[0, 1] = "1"
+					endif
+					if val(keyString[1, 1]) = 0
+						keyString[1, 1] = "1"
+					endif
+				endif
+				if keyStringPosition > 0
+					dec keystringPosition
+				else
+					keyStringPosition = 4
+				endif
+				activeKey = setKeyHighlight(sprite.bCoordPrev, on)
+				bState.singleDigit = true		
+			endCase
 			// --- Key NEXT
-			case sprite.bLarge[1]
+			case sprite.bCoordNext
 				if keyStringPosition = 1
 					if val(keyString[0, 1]) = 0
 						keyString[0, 1] = "1"
@@ -159,7 +177,7 @@ function mainScreen(dev as device_t)
 				else
 					keyStringPosition = 0
 				endif
-				activeKey = setKeyHighlight(sprite.bLarge[1], on)
+				activeKey = setKeyHighlight(sprite.bCoordNext, on)
 				bState.singleDigit = true		
 			endCase
 			// --- key << Prev Mortar Model

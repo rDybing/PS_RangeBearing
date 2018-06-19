@@ -30,8 +30,10 @@ endType
 
 type sprite_t
 	back			as integer
-	bSmall			as integer[12]
-	bLarge			as integer[2]
+	bSmall			as integer[11]
+	bCalc			as integer
+	bCoordPrev		as integer
+	bCoordNext		as integer
 	bAbout			as integer
 	bMrtPrev		as integer
 	bMrtNext		as integer
@@ -57,8 +59,8 @@ endType
 
 type txt_t
 	ver				as integer
-	num				as integer[12]
-	large			as integer[8]
+	num				as integer[11]
+	calc			as integer[3]
 	alpha			as integer[9]
 	lcdFixed		as integer[3]
 	lcdFloating		as integer[9]
@@ -69,6 +71,8 @@ type txt_t
 	bMrtPrev		as integer
 	bMrtNext		as integer
 	mrtModel		as integer
+	coordPrev		as integer
+	coordNext		as integer
 endType
 
 type txtProp_t	

@@ -24,10 +24,10 @@ endFunction
 function placeMainScreen()
 	
 	placeButtonsSmall()
-	placeButtonsLarge()
+	placeButtonsSide()
 	placeButtonsUpper()
 	placeNumericKeysTxt()
-	placeNextKeyTxt()
+	placePrevNextKeyTxt()
 	placeCalcKeyTxt()
 	placeAlphaKeysTxt()
 	placeUpperKeysTxt()
@@ -80,18 +80,23 @@ function placeButtonsSmall()
 	
 endFunction
 
-function placeButtonsLarge()
+function placeButtonsSide()
 	
 	spr as spriteProp_t
 	
 	spr.posX = position.bStartX + (position.bWidth * 3)
-	spr.posY = position.bStartY - GetSpriteHeight(sprite.bSmall[0])
+	spr.posY = position.bStartY - (getSpriteHeight(sprite.bSmall[0]) * 3)
 	spr.width = position.bWidth
 	spr.height = -1
-	
-	imageSetup(sprite.bLarge[0], layer.D, spr, media.bLarge, color[0])
-	spr.posY = spr.posY - GetSpriteHeight(sprite.bLarge[0])
-	imageSetup(sprite.bLarge[1], layer.D, spr, media.bLarge, color[0])
+
+	// next button
+	imageSetup(sprite.bCoordNext, layer.D, spr, media.bSmall, color[0])
+	// prev button
+	spr.posY = spr.posY + GetSpriteHeight(sprite.bCoordNext)
+	imageSetup(sprite.bCoordPrev, layer.D, spr, media.bSmall, color[0])
+	// calc button
+	spr.posY = spr.posY + GetSpriteHeight(sprite.bCoordPrev)
+	imageSetup(sprite.bCalc, layer.D, spr, media.bLarge, color[0])
 	
 endFunction
 

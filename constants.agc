@@ -20,42 +20,45 @@
 	for i = 0 to 11
 		txt.num[i]			= 1010 + i // to 1021
 	next i
-	for i = 0 to 7
-		txt.large[i]		= 1022 + i // to 1029
+	for i = 0 to 3
+		txt.calc[i]			= 1022 + i // to 1025
 	next i
 	for i = 0 to 8
-		txt.alpha[i]		= 1030 + i // to 1038
+		txt.alpha[i]		= 1026 + i // to 1034
 	next i
 	for i = 0 to 3
-		txt.lcdFixed[i]		= 1039 + i // to 1042
+		txt.lcdFixed[i]		= 1035 + i // to 1038
 	next i
 	for i = 0 to 9
-		txt.lcdFloating[i]	= 1043 + i // to 1052
+		txt.lcdFloating[i]	= 1039 + i // to 1048
 	next i
-	txt.lcdCalc[0]			= 1053
-	txt.lcdCalc[1]			= 1054
-	txt.lcdCalc[2]			= 1055
-	txt.test				= 1056
-	txt.date				= 1057
-	txt.bAbout				= 1058
-	txt.bMrtPrev			= 1059
-	txt.bMrtNext			= 1060
-	txt.mrtModel			= 1061
+	txt.lcdCalc[0]			= 1049
+	txt.lcdCalc[1]			= 1050
+	txt.lcdCalc[2]			= 1051
+	txt.test				= 1052
+	txt.date				= 1053
+	txt.bAbout				= 1054
+	txt.bMrtPrev			= 1055
+	txt.bMrtNext			= 1056
+	txt.mrtModel			= 1057
+	txt.coordPrev			= 1058
+	txt.coordNext			= 1059
 	
 	// sprites
 	sprite.back				= 9004
 	for i = 0 to 11
 		sprite.bSmall[i] 	= 9010 + i // to 9021
 	next i
-	sprite.bLarge[0]		= 9022
-	sprite.bLarge[1]		= 9023
-	sprite.lcd				= 9024
+	sprite.bCalc			= 9022
+	sprite.lcd				= 9023
 	for i = 0 to 3
-		sprite.hexHead[i]	= 9025 + i // to 9028
+		sprite.hexHead[i]	= 9024 + i // to 9027
 	next i
-	sprite.bAbout			= 9029
-	sprite.bMrtPrev			= 9030
-	sprite.bMrtNext			= 9031
+	sprite.bAbout			= 9028
+	sprite.bMrtPrev			= 9029
+	sprite.bMrtNext			= 9030
+	sprite.bCoordPrev		= 9031
+	sprite.bCoordNext		= 9032		
 
 	// images	
 	media.font				= 9000

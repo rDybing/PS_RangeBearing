@@ -255,21 +255,22 @@ function placeAlphaKeysTxt()
 	
 endFunction
 
-function placeNextKeyTxt()
+function placePrevNextKeyTxt()
 
 	mt as txtProp_t
-	nextChars as string[3] = ["N", "E", "X", "T"]
-	offsetY as integer = 5
+	offsetY as float = 2.5
 	
 	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
 
-	for i = 0 to 3
-		
-		setTextProperties(mt, getSpriteX(sprite.bLarge[1]) + (GetSpriteWidth(sprite.bLarge[1]) / 2), getSpriteY(sprite.bLarge[1]) + (offsetY * i) + 0.75, 1)
-		createText(txt.large[i], nextChars[i])	
-		textDraw(txt.large[i], mt)
+	// Prev
+	setTextProperties(mt, getSpriteX(sprite.bCoordPrev) + (GetSpriteWidth(sprite.bCoordPrev) / 2), getSpriteY(sprite.bCoordPrev) + (offsetY), 1)
+	createText(txt.coordPrev, "<<")	
+	textDraw(txt.coordPrev, mt)
 
-	next i
+	// Next
+	setTextProperties(mt, getSpriteX(sprite.bCoordNext) + (GetSpriteWidth(sprite.bCoordNext) / 2), getSpriteY(sprite.bCoordNext) + (offsetY), 1)
+	createText(txt.coordNext, ">>")	
+	textDraw(txt.coordNext, mt)
 
 endFunction
 
@@ -283,9 +284,9 @@ function placeCalcKeyTxt()
 
 	for i = 0 to 3
 	
-		setTextProperties(mt, getSpriteX(sprite.bLarge[0]) + (GetSpriteWidth(sprite.bLarge[0]) / 2), getSpriteY(sprite.bLarge[0]) + (offsetY * i) + 0.75, 1)
-		createText(txt.large[i + 4], calcChars[i])
-		textDraw(txt.large[i + 4], mt)
+		setTextProperties(mt, getSpriteX(sprite.bCalc) + (GetSpriteWidth(sprite.bCalc) / 2), getSpriteY(sprite.bCalc) + (offsetY * i) + 0.75, 1)
+		createText(txt.calc[i], calcChars[i])
+		textDraw(txt.calc[i], mt)
 
 	next i
 
@@ -314,29 +315,34 @@ function highlightText(index as integer, col as color_t)
 
 	index = index - 8000
 
-	// large keys
-	if index = 1022
-		indexRange = 1026
-		for i = indexRange to indexRange + 3
+	select index
+	case 1022		// calc key
+		for i = index to index + 3
 			SetTextColor(i, col.r, col.g, col.b, col.a)
 		next i
-	elseif index = 1023
-		indexRange = 1022
-		for i = indexRange to indexRange + 3
-			SetTextColor(i, col.r, col.g, col.b, col.a)
-		next i
-	elseif index = 1029
+	endCase
+	case 1028		// about key
+		SetTextColor(1054, col.r, col.g, col.b, col.a)
+	endCase
+	case 1029		// mortar prev
+		SetTextColor(1055, col.r, col.g, col.b, col.a)
+	endCase
+	case 1030		// mortar next
+		SetTextColor(1056, col.r, col.g, col.b, col.a)
+	endCase
+	case 1031		// coord Prev
 		SetTextColor(1058, col.r, col.g, col.b, col.a)
-	elseif index = 1030
+	endCase
+	case 1032		// coord next
 		SetTextColor(1059, col.r, col.g, col.b, col.a)
-	elseif index = 1031
-		SetTextColor(1060, col.r, col.g, col.b, col.a)
-	else
+	endCase
+	case default	// numeric keys
 		SetTextColor(index, col.r, col.g, col.b, col.a)
 		if index > 1012 and index < 1022
-			SetTextColor(index + 17, col.r, col.g, col.b, col.a)
+			SetTextColor(index + 13, col.r, col.g, col.b, col.a)
 		endif
-	endif
+	endCase
+	endSelect
 	
 endFunction
 
