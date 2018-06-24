@@ -66,23 +66,28 @@ function calc(c as coord_t[], ks as string[][], mrt as mortar_t)
 endFunction calc
 
 function calcMortarMils(distance as integer, mrt as mortar_t)
-
-	mils		as float
-	degrees		as float
-	dist		as float
-	velocity	as float
 	
-	dist		= distance
-	velocity	= mrt.velocity
-
-	// Don't care about height difference between mortar and target
-	degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * ((Gravity * dist) ^ 2)))) / (Gravity * dist))
-
-	// Do care about height difference between mortar and target
-	//degrees = atan((velocity ^ 2 + (sqrt((velocity ^ 4) - Gravity * (((Gravity * dist) ^ 2) + (2 * y * velocity) ^ 2)))) / (Gravity * dist))
-
-	mils = (degrees * (Pi / 180)) / (Pi / 3200)
-
+	mils as float
+	mFraction as float
+	
+	i = 0
+	
+	while mrt.table[i].range < distance and i < 24
+		inc i
+	endWhile
+	
+	if i <> 24
+		distance = distance - mrt.table[i].range
+		mils = mrt.table[i].mils
+		mFraction = (mils - mrt.table[i + 1].mils) / 50
+		mils = mils - (distance * mFraction)
+	else
+		mils = mrt.table[i].mils
+		if distance > mrt.table[i].range
+			mils = 0
+		endif
+	endif 
+	
 endFunction mils
 
 function setTimer(freq as integer)

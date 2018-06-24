@@ -146,7 +146,11 @@ endFunction
 function updateMortarModelText(mrt as mortar_t, mils as integer)
 
 	SetTextString(txt.mrtModel, mrt.model)
-	SetTextString(txt.lcdCalc[2], str(mils))
+	if mils > 800
+		SetTextString(txt.lcdCalc[2], str(mils))
+	else
+		SetTextString(txt.lcdCalc[2], "N/A")
+	endif
 
 endFunction
 
@@ -173,7 +177,11 @@ function updateCalcText(c as calc_t)
 	mils = str(c.mils)
 	mils = padZeroes(mils)
 	
-	SetTextString(txt.lcdCalc[2], mils)
+	if c.mils > 800
+		SetTextString(txt.lcdCalc[2], mils)
+	else
+		SetTextString(txt.lcdCalc[2], "N/A")
+	endif
 	
 endFunction
 

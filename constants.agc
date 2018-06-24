@@ -208,18 +208,108 @@ function initMortar()
 	...oddly no shell weight...
 	*/
 
+	range as integer
 	mrt as mortar_t[2]
 
 	// German 50mm			Granatwerfer 36
 	// German 80mm			Granatwerfer 34
-	mrt[0].velocity	= 174.0		// m/s
-	mrt[0].model	= "GW 34"
+	mrt[0].model = "GRW 34"
+	range = 0
+	for i = 0 to 24
+		inc range, 50
+		mrt[0].table[i].range = range
+	next i
+	mrt[0].table[0].mils = 1578
+	mrt[0].table[1].mils = 1557
+	mrt[0].table[2].mils = 1536
+	mrt[0].table[3].mils = 1514
+	mrt[0].table[4].mils = 1493
+	mrt[0].table[5].mils = 1471
+	mrt[0].table[6].mils = 1449
+	mrt[0].table[7].mils = 1427
+	mrt[0].table[8].mils = 1404
+	mrt[0].table[9].mils = 1381
+	mrt[0].table[10].mils = 1357
+	mrt[0].table[11].mils = 1333
+	mrt[0].table[12].mils = 1308
+	mrt[0].table[13].mils = 1282
+	mrt[0].table[14].mils = 1256
+	mrt[0].table[15].mils = 1228
+	mrt[0].table[16].mils = 1199
+	mrt[0].table[17].mils = 1168
+	mrt[0].table[18].mils = 1134
+	mrt[0].table[19].mils = 1098
+	mrt[0].table[20].mils = 1057
+	mrt[0].table[21].mils = 1009
+	mrt[0].table[22].mils = 947
+	mrt[0].table[23].mils = 803
+	mrt[0].table[24].mils = 0
+	
 	// British 3.0"
-	mrt[1].velocity = 200.0		// m/s
-	mrt[1].model	= "3 INCH"
+	mrt[1].model = "3 INCH"
+	range = 0
+	for i = 0 to 24
+		inc range, 50
+		mrt[1].table[i].range = range
+	next i
+	mrt[1].table[0].mils = 1582
+	mrt[1].table[1].mils = 1565
+	mrt[1].table[2].mils = 1548
+	mrt[1].table[3].mils = 1530
+	mrt[1].table[4].mils = 1513
+	mrt[1].table[5].mils = 1495
+	mrt[1].table[6].mils = 1477
+	mrt[1].table[7].mils = 1459
+	mrt[1].table[8].mils = 1441
+	mrt[1].table[9].mils = 1423
+	mrt[1].table[10].mils = 1404
+	mrt[1].table[11].mils = 1385
+	mrt[1].table[12].mils = 1366
+	mrt[1].table[13].mils = 1346
+	mrt[1].table[14].mils = 1327
+	mrt[1].table[15].mils = 1306
+	mrt[1].table[16].mils = 1285
+	mrt[1].table[17].mils = 1264
+	mrt[1].table[18].mils = 1241
+	mrt[1].table[19].mils = 1218
+	mrt[1].table[20].mils = 1194
+	mrt[1].table[21].mils = 1168
+	mrt[1].table[22].mils = 1141
+	mrt[1].table[23].mils = 1112
+	mrt[1].table[24].mils = 1081
+	
 	// British 4.2"			
-	mrt[2].velocity = 223.0		// m/s
-	mrt[2].model	= "4.2 INCH"
-
+	mrt[2].model = "4.2 INCH"
+	range = 0
+	for i = 0 to 24
+		inc range, 50
+		mrt[2].table[i].range = range
+	next i
+	mrt[2].table[0].mils = 1590
+	mrt[2].table[1].mils = 1580
+	mrt[2].table[2].mils = 1570
+	mrt[2].table[3].mils = 1561
+	mrt[2].table[4].mils = 1551
+	mrt[2].table[5].mils = 1541
+	mrt[2].table[6].mils = 1531
+	mrt[2].table[7].mils = 1521
+	mrt[2].table[8].mils = 1511
+	mrt[2].table[9].mils = 1501
+	mrt[2].table[10].mils = 1492
+	mrt[2].table[11].mils = 1482
+	mrt[2].table[12].mils = 1471
+	mrt[2].table[13].mils = 1461
+	mrt[2].table[14].mils = 1451
+	mrt[2].table[15].mils = 1441
+	mrt[2].table[16].mils = 1431
+	mrt[2].table[17].mils = 1420
+	mrt[2].table[18].mils = 1410
+	mrt[2].table[19].mils = 1399
+	mrt[2].table[20].mils = 1389
+	mrt[2].table[21].mils = 1378
+	mrt[2].table[22].mils = 1367
+	mrt[2].table[23].mils = 1356
+	mrt[2].table[24].mils = 1345
+	
 endFunction mrt
 

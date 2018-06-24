@@ -157,7 +157,12 @@ type calc_t
 endType
 
 type mortar_t
-	velocity		as float
+	table			as milsTable_t[24]
 	model			as string
+endType
+
+type milsTable_t
+	range			as integer
+	mils			as integer
 endType
 
