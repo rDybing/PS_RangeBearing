@@ -11,8 +11,7 @@ function mainScreen(dev as device_t)
 	m					as mouse_t
 	bState				as buttonState_t
 	keyTimer			as timer_t
-	keyString			as string[1, 4]
-	keyStringPosition	as integer
+	keyString			as keyString_t
 	blinkTimer			as timer_t
 	blink				as integer
 	keyPressed			as integer
@@ -28,13 +27,13 @@ function mainScreen(dev as device_t)
 	bState.latch[0] = true
 	bState.latch[1] = false
 	bState.calc = false
-	keyString[0] =["A", "1", "7", "7", "7"]
-	keyString[1] =["A", "1", "7", "7", "7"]
+	keyString.text[0] =["A", "1", "7", "7", "7"]
+	keyString.text[1] =["A", "1", "7", "7", "7"]
 	bState.mode = POS
 	bState.secondDigit = false
 	setKeyLatchHighlight(POS)
 	bState.active = false
-	placeLCDTextNumeric(keyString)
+	placeLCDTextNumeric(keyString.text)
 	placeCalcText(mortar[mrtIndex])
 	initCoord(coord)
 	activeKey = sprite.bSmall[0]
@@ -48,175 +47,19 @@ function mainScreen(dev as device_t)
 		if m.hit
 			
 			spr = getMouseHit(m)
-			keyPressed = true
 			
-			select spr
-			// --- Key MRT
-			case sprite.bSmall[0]
-				if bState.latch[1]
-					bState.latch[0] = true
-					bState.latch[1] = false
-					bState.mode = POS
-					keyStringPosition = 0
-					setKeyLatchHighlight(POS)
-					activeKey = sprite.bSmall[0]
-				endif				
-			endCase
-			// --- Key 0
-			case sprite.bSmall[1]
-				if keyStringPosition = 1 and bState.secondDigit = true					
-					setKeyString(spr, keyString, bState, keyStringPosition, 0, 0)
-					activeKey = setKeyHighlight(sprite.bSmall[1], on)
-					bState.secondDigit = false
-				endif
-			endCase
-			// --- Key TGT
-			case sprite.bSmall[2]
-				if bState.latch[0]
-					bState.latch[0] = false
-					bState.latch[1] = true
-					bState.mode = TGT
-					keyStringPosition = 0
-					setKeyLatchHighlight(TGT)
-					activeKey = sprite.bSmall[2]
-				endif			
-			endCase
-			// --- Key 1 - ABC
-			case sprite.bSmall[3]
-				setKeyString(spr, keyString, bState, keyStringPosition, 0, 1)
-				activeKey = setKeyHighlight(sprite.bSmall[3], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 2 - DEF
-			case sprite.bSmall[4]
-				setKeyString(spr, keyString, bState, keyStringPosition, 3, 2)
-				activeKey = setKeyHighlight(sprite.bSmall[4], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 3 - GHI
-			case sprite.bSmall[5]
-				setKeyString(spr, keyString, bState, keyStringPosition, 6, 3)
-				activeKey = setKeyHighlight(sprite.bSmall[5], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 4 - JKL
-			case sprite.bSmall[6]
-				setKeyString(spr, keyString, bState, keyStringPosition, 9, 4)
-				activeKey = setKeyHighlight(sprite.bSmall[6], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 5 - MNO
-			case sprite.bSmall[7]
-				setKeyString(spr, keyString, bState, keyStringPosition, 12, 5)
-				activeKey = setKeyHighlight(sprite.bSmall[7], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 6 - PQR
-			case sprite.bSmall[8]
-				setKeyString(spr, keyString, bState, keyStringPosition, 15, 6)
-				activeKey = setKeyHighlight(sprite.bSmall[8], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 7 - STU
-			case sprite.bSmall[9]
-				setKeyString(spr, keyString, bState, keyStringPosition, 18, 7)
-				activeKey = setKeyHighlight(sprite.bSmall[9], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 8 - VWX
-			case sprite.bSmall[10]
-				setKeyString(spr, keyString, bState, keyStringPosition, 21, 8)
-				activeKey = setKeyHighlight(sprite.bSmall[10], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key 9 - YZ
-			case sprite.bSmall[11]
-				if spr <> bState.lastKey
-					bState.hits = 0
-				endif
-				setKeyString(spr, keyString, bState, keyStringPosition, 24, 9)
-				activeKey = setKeyHighlight(sprite.bSmall[11], on)
-				bState.secondDigit = getSecondDigit(keyStringPosition, bState.secondDigit)
-			endCase
-			// --- Key CALC
-			case sprite.bCalc
-				activeKey = setKeyHighlight(sprite.bCalc, on)
-				calc = calc(coord, keyString, mortar[mrtIndex])
-				bState.calc = true
-			endCase
-			// --- PREV
-			case sprite.bCoordPrev
-				if keyStringPosition = 1
-					if val(keyString[0, 1]) = 0
-						keyString[0, 1] = "1"
-					endif
-					if val(keyString[1, 1]) = 0
-						keyString[1, 1] = "1"
-					endif
-				endif
-				if keyStringPosition > 0
-					dec keystringPosition
-				else
-					keyStringPosition = 4
-				endif
-				activeKey = setKeyHighlight(sprite.bCoordPrev, on)
-				bState.singleDigit = true		
-			endCase
-			// --- Key NEXT
-			case sprite.bCoordNext
-				if keyStringPosition = 1
-					if val(keyString[0, 1]) = 0
-						keyString[0, 1] = "1"
-					endif
-					if val(keyString[1, 1]) = 0
-						keyString[1, 1] = "1"
-					endif
-				endif
-				if keyStringPosition < 4
-					inc keystringPosition
-				else
-					keyStringPosition = 0
-				endif
-				activeKey = setKeyHighlight(sprite.bCoordNext, on)
-				bState.singleDigit = true		
-			endCase
-			// --- key << Prev Mortar Model
-			case sprite.bMrtPrev
-				activeKey = setKeyHighlight(sprite.bMrtPrev, on)
-				if mrtIndex = 0
-					mrtIndex = 2
-				else
-					dec mrtIndex
-				endif
-				calc.mils = calcMortarMils(calc.range, mortar[mrtIndex])
-				updateMortarModelText(mortar[mrtIndex], calc.mils)			
-			endCase
-			// --- key >> Next Mortar Model
-			case sprite.bMrtNext
-				activeKey = setKeyHighlight(sprite.bMrtNext, on)
-				if mrtIndex = 2
-					mrtIndex = 0
-				else
-					inc mrtIndex
-				endif
-				calc.mils = calcMortarMils(calc.range, mortar[mrtIndex])
-				updateMortarModelText(mortar[mrtIndex], calc.mils)				
-			endCase
-			// --- key ABOUT
-			case sprite.bAbout
-				activeKey = setKeyHighlight(sprite.bAbout, on)
-				OpenBrowser("https://dybings.blogspot.com/2018/06/post-scriptum-mortar-calculator.html")
-			endCase
-			case default
-				keyPressed = false
-			endCase
-			endSelect
+			if spr = sprite.bMrtPrev or spr = sprite.bMrtNext or spr = sprite.bAbout
+				mrtIndex = getKeyTopRow(spr, mrtIndex, mortar, bState, calc)
+				keyPressed = true
+			else
+				keyPressed = getKeyCalcView(spr, keyString, bState, mortar[mrtIndex], calc, coord)
+			endif
 
 			if keyPressed
 				keyTimer = setTimer(75)
 				bState.lastKey = spr
 				bState.active = true
-				updateLCDText(bState.mode, keyString, keyStringPosition)
+				updateLCDText(bState.mode, keyString)
 				PlaySound(media.keyClick)
 				for i = 0 to txt.lcdFloating.length
 					SetTextVisible(txt.lcdFloating[i], 1)
@@ -226,14 +69,14 @@ function mainScreen(dev as device_t)
 		
 		if bState.active and getTimer(keyTimer)
 			bState.active = false
-			if activeKey <> sprite.bSmall[0] and activeKey <> sprite.bSmall[2]
-				setKeyHighlight(activeKey, off)
+			if bState.activeKey <> sprite.bSmall[0] and bState.activeKey <> sprite.bSmall[2]
+				setKeyHighlight(bState.activeKey, off)
 			endif
 		endif
 
 		if getTimer(blinkTimer)
 			blink = not blink
-			blinkLCDText(bState.mode, keyStringPosition, blink)
+			blinkLCDText(bState.mode, keyString.position, blink)
 		endif
 
 		if bState.calc

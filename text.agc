@@ -6,34 +6,34 @@
  *
  * *******************************************/
  
- function setKeyString(spr as integer, ks ref as string[][], bState ref as buttonState_t, ksp as integer, keyOffset as integer, key as integer)
+ function setKeyString(spr as integer, ks ref as keyString_t, bState ref as buttonState_t, keyOffset as integer, key as integer)
 	
 	reset as integer = false
 	
-	if ksp = 0
+	if ks.position = 0
 		if key <> 9 and key <> 0
 			if spr <> bState.lastKey
 				bState.hits = 0
 			endif
 			select bState.hits
 			case 0
-				ks[bState.mode, ksp] = chr(65 + keyOffset)
+				ks.text[bState.mode, ks.position] = chr(65 + keyOffset)
 			endCase
 			case 1
-				ks[bState.mode, ksp] = chr(66 + keyOffset)
+				ks.text[bState.mode, ks.position] = chr(66 + keyOffset)
 			endCase
 			case 2
-				ks[bState.mode, ksp] = chr(67 + keyOffset)
+				ks.text[bState.mode, ks.position] = chr(67 + keyOffset)
 				reset = true
 			endCase
 			endSelect
 		elseif key = 9
 			select bState.hits
 			case 0
-				ks[bState.mode, ksp] = chr(65 + keyOffset)
+				ks.text[bState.mode, ks.position] = chr(65 + keyOffset)
 			endCase
 			case 1
-				ks[bState.mode, ksp] = chr(66 + keyOffset)
+				ks.text[bState.mode, ks.position] = chr(66 + keyOffset)
 				reset = true
 			endCase
 			endSelect
@@ -44,16 +44,16 @@
 			inc bState.hits
 		endif
 	endif
-	if ksp > 0
-		if ksp = 1
-			if len(ks[bState.mode, ksp]) = 1 and bState.singleDigit = false
-				ks[bState.mode, ksp] = ks[bState.mode, ksp] + str(key)
+	if ks.position > 0
+		if ks.position = 1
+			if len(ks.text[bState.mode, ks.position]) = 1 and bState.singleDigit = false
+				ks.text[bState.mode, ks.position] = ks.text[bState.mode, ks.position] + str(key)
 			else
-				ks[bState.mode, ksp] = str(key)
+				ks.text[bState.mode, ks.position] = str(key)
 				bState.singleDigit = false
 			endif
 		else
-			ks[bState.mode, ksp] = str(key)
+			ks.text[bState.mode, ks.position] = str(key)
 		endif
 	endif
 				
@@ -199,7 +199,7 @@ function blinkLCDText(mode as integer, kp as integer, onOff as integer)
 
 endFunction
 
-function updateLCDText(mode as integer, ks as string[][], kp as integer)
+function updateLCDText(mode as integer, ks as keyString_t)
 
 	index as integer = 0
 
@@ -207,12 +207,12 @@ function updateLCDText(mode as integer, ks as string[][], kp as integer)
 		index = 5
 	endif
 
-	index = index + kp
+	index = index + ks.position
 
-	if kp > 1
-		SetTextString(txt.lcdFloating[index], " - " + ks[mode, kp])
+	if ks.position > 1
+		SetTextString(txt.lcdFloating[index], " - " + ks.text[mode, ks.position])
 	else
-		SetTextString(txt.lcdFloating[index], ks[mode, kp])
+		SetTextString(txt.lcdFloating[index], ks.text[mode, ks.position])
 	endif
 
 endFunction

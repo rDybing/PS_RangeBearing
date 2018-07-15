@@ -1,4 +1,4 @@
-## A little app for Android and Windows to provide som assistance in the game Post Scriptum.
+## A little app for Android to provide som assistance in the game Post Scriptum.
 
 
 ### Copyright: 2018 Roy Dybing
@@ -23,10 +23,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-### Test release:
+### Test release (1.0.1):
 
 * Range and bearing calculation.
 
-### First release:
+### First release (1.0.2):
 
 * Mils (milliradians) calculation for current in-game mortars added. 

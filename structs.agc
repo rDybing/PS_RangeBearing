@@ -134,6 +134,7 @@ type buttonState_t
 	mode			as integer
 	singleDigit		as integer
 	active			as integer
+	activeKey		as integer
 	calc			as integer
 	secondDigit		as integer
 endType
@@ -154,6 +155,11 @@ type calc_t
 	tX				as string
 	tY				as string
 	a				as string
+endType
+
+type keyString_t
+	text			as string[1, 4]
+	position		as integer
 endType
 
 type mortar_t
