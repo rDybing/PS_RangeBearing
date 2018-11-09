@@ -47,8 +47,8 @@ function mainScreen(dev as device_t)
 		if m.hit
 			
 			spr = getMouseHit(m)
-			
-			if spr = sprite.bMrtPrev or spr = sprite.bMrtNext or spr = sprite.bAbout
+
+			if topRowKeys(spr)
 				mrtIndex = getKeyTopRow(spr, mrtIndex, mortar, bState, calc)
 				keyPressed = true
 			else

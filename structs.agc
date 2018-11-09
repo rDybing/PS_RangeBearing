@@ -165,6 +165,7 @@ endType
 type mortar_t
 	table			as milsTable_t[24]
 	model			as string
+	minRange		as integer
 endType
 
 type milsTable_t

@@ -71,22 +71,26 @@ function calcMortarMils(distance as integer, mrt as mortar_t)
 	mFraction as float
 	
 	i = 0
-	
-	while mrt.table[i].range < distance and i < 24
-		inc i
-	endWhile
-	
-	if i <> 24
-		distance = distance - mrt.table[i].range
-		mils = mrt.table[i].mils
-		mFraction = (mils - mrt.table[i + 1].mils) / 50
-		mils = mils - (distance * mFraction)
+
+	if distance = 0
+		mils = 1600
 	else
-		mils = mrt.table[i].mils
-		if distance > mrt.table[i].range
-			mils = 0
-		endif
-	endif 
+		while mrt.table[i].range < distance and i < 24
+			inc i
+		endWhile
+		
+		if i <> 24
+			distance = distance - mrt.table[i].range
+			mils = mrt.table[i].mils
+			mFraction = (mils - mrt.table[i + 1].mils) / 50
+			mils = mils - (distance * mFraction)
+		else
+			mils = mrt.table[i].mils
+			if distance > mrt.table[i].range
+				mils = 0
+			endif
+		endif 
+	endif
 	
 endFunction mils
 
@@ -108,6 +112,16 @@ function getTimer(t ref as timer_t)
 	
 	if t.new > t.old + t.freq
 		t.old = t.new
+		out = true
+	endif
+	
+endFunction out
+
+function topRowKeys(spr as integer)
+
+	out = false
+
+	if spr = sprite.bMrtPrev or spr = sprite.bMrtNext or spr = sprite.bAbout
 		out = true
 	endif
 	

@@ -1,3 +1,4 @@
+
 [apk_settings]
 alias=
 app_icon_path=D:\\Source\\AGK\\PS_RangeBearing\\mortarIconAdjusted.png
@@ -5,17 +6,20 @@ notif_icon_path=
 app_name=PS Mortar Calc
 app_type=0
 game_circle_api_key=
-keystore_path=
+keystore_path=D:\\MobileBinaries\\Certificates\\mortarcalc.keystore
 orientation=1
-output_path=D:\\MobileBinaries\\mortarCalc.apk
+output_path=D:\\MobileBinaries\\mortarCalc_cert.apk
 ouya_icon_path=
 package_name=com.rdybing.psmortcalc
 permission_flags=0
 play_app_id=
 sdk_version=1
-version_name=1.0.1
-version_number=4
+version_name=1.0.3
+version_number=6
 firebase_config_path=
+arcore=0
+url_scheme=
+deep_link=
 
 [ipa_settings]
 app_icon_path=
@@ -33,6 +37,8 @@ uses_ads=0
 version_number=
 firebase_config_path=
 splash_2436_path=
+url_scheme=
+deep_link=
 
 [html5_settings]
 commands_used=0
@@ -52,16 +58,16 @@ FILE_8=text.agc;-1
 FILE_9=chores.agc;-1
 
 [files]
-FILE_NAME_0=0;main.agc;653;0
-FILE_NAME_1=0;views.agc;6773;1
-FILE_NAME_2=0;output.agc;3362;2
-FILE_NAME_3=0;input.agc;866;4
+FILE_NAME_0=0;main.agc;3250;0
+FILE_NAME_1=0;views.agc;1025;1
+FILE_NAME_2=0;output.agc;3542;2
+FILE_NAME_3=0;input.agc;3010;4
 FILE_NAME_4=0;tests.agc;58;9
 FILE_NAME_5=0;fileIO.agc;666;5
-FILE_NAME_6=0;structs.agc;2692;7
-FILE_NAME_7=1;constants.agc;4790;8
-FILE_NAME_8=0;text.agc;3993;3
-FILE_NAME_9=0;chores.agc;1716;6
+FILE_NAME_6=0;structs.agc;2744;7
+FILE_NAME_7=1;constants.agc;6388;8
+FILE_NAME_8=0;text.agc;3132;3
+FILE_NAME_9=0;chores.agc;1960;6
 
 [project]
 description=

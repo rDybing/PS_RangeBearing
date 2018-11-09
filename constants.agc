@@ -201,15 +201,8 @@ endFunction
 
 function initMortar()
 
-	/* From psmc:
-	export const PS_GER_VELOCITY = 108;
-	export const PS_BR1_VELOCITY = 160;
-	export const PS_BR2_VELOCITY = 120;
-	...oddly no shell weight...
-	*/
-
 	range as integer
-	mrt as mortar_t[2]
+	mrt as mortar_t[3]
 
 	// German 50mm			Granatwerfer 36
 	// German 80mm			Granatwerfer 34
@@ -246,7 +239,7 @@ function initMortar()
 	mrt[0].table[24].mils = 0
 	
 	// British 3.0"
-	mrt[1].model = "3 INCH"
+	mrt[1].model = "UK 3" + chr(34)
 	range = 0
 	for i = 0 to 24
 		inc range, 50
@@ -279,7 +272,7 @@ function initMortar()
 	mrt[1].table[24].mils = 1081
 	
 	// British 4.2"			
-	mrt[2].model = "4.2 INCH"
+	mrt[2].model = "UK 4.2" + chr(34)
 	range = 0
 	for i = 0 to 24
 		inc range, 50
@@ -310,6 +303,39 @@ function initMortar()
 	mrt[2].table[22].mils = 1367
 	mrt[2].table[23].mils = 1356
 	mrt[2].table[24].mils = 1345
+
+	// US 4"			
+	mrt[3].model = "US M2 4" + chr(34)
+	range = 0
+	for i = 0 to 24
+		inc range, 50
+		mrt[3].table[i].range = range
+	next i
+	mrt[3].table[0].mils = 1582
+	mrt[3].table[1].mils = 1565
+	mrt[3].table[2].mils = 1548
+	mrt[3].table[3].mils = 1530
+	mrt[3].table[4].mils = 1513
+	mrt[3].table[5].mils = 1495
+	mrt[3].table[6].mils = 1477
+	mrt[3].table[7].mils = 1459
+	mrt[3].table[8].mils = 1441
+	mrt[3].table[9].mils = 1423
+	mrt[3].table[10].mils = 1404
+	mrt[3].table[11].mils = 1385
+	mrt[3].table[12].mils = 1366
+	mrt[3].table[13].mils = 1346
+	mrt[3].table[14].mils = 1327
+	mrt[3].table[15].mils = 1306
+	mrt[3].table[16].mils = 1285
+	mrt[3].table[17].mils = 1264
+	mrt[3].table[18].mils = 1241
+	mrt[3].table[19].mils = 1218
+	mrt[3].table[20].mils = 1194
+	mrt[3].table[21].mils = 1168
+	mrt[3].table[22].mils = 1141
+	mrt[3].table[23].mils = 1112
+	mrt[3].table[24].mils = 1081
 	
 endFunction mrt
 

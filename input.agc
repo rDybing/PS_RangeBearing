@@ -116,7 +116,7 @@ function getKeyTopRow(spr as integer, mrtIndex as integer, mortar as mortar_t[],
 		case sprite.bMrtPrev
 			bState.activeKey = setKeyHighlight(sprite.bMrtPrev, on)
 			if mrtIndex = 0
-				mrtIndex = 2
+				mrtIndex = mortar.length
 			else
 				dec mrtIndex
 			endif
@@ -126,7 +126,7 @@ function getKeyTopRow(spr as integer, mrtIndex as integer, mortar as mortar_t[],
 		// --- key >> Next Mortar Model
 		case sprite.bMrtNext
 			bState.activeKey = setKeyHighlight(sprite.bMrtNext, on)
-			if mrtIndex = 2
+			if mrtIndex = mortar.length
 				mrtIndex = 0
 			else
 				inc mrtIndex
