@@ -8,9 +8,15 @@
 
 // ************************************************ Views Keys *********************************************************
 
-function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref as buttonState_t, mortar as mortar_t, calc ref as calc_t, coord as coord_t[])
+function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref as buttonState_t, mortar as mortar_t, calc ref as calc_t, coord as coord_t[], resMode as integer)
 
 	keyPressed as integer = true
+	
+	if resMode
+		maxRes = 4
+	else
+		maxRes = 3
+	endif
 
 	if spr >= sprite.bSmall[3] and spr <= sprite.bSmall[10]
 		// keypad 1 through 8
@@ -78,7 +84,7 @@ function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref
 			if keyString.position > 0
 				dec keystring.position
 			else
-				keyString.position = 4
+				keyString.position = maxRes
 			endif
 			bState.activeKey = setKeyHighlight(sprite.bCoordPrev, on)
 			bState.singleDigit = true		
@@ -93,7 +99,8 @@ function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref
 					keyString.text[1, 1] = "1"
 				endif
 			endif
-			if keyString.position < 4
+			
+			if keyString.position < maxRes
 				inc keystring.position
 			else
 				keyString.position = 0
@@ -142,6 +149,16 @@ function getKeyTopRow(spr as integer, mrtIndex as integer, mortar as mortar_t[],
 		endSelect
 
 endFunction mrtIndex
+
+function displayHit(spr)
+	
+	out = false
+	
+	if sprite.lcd
+		out = true
+	endif
+	
+endFunction out
 
 // ************************************************ Chores *************************************************************
  
