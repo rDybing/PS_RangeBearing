@@ -62,6 +62,10 @@ function mainScreen(dev as device_t)
 			endif
 
 			if keyPressed
+				if not resMode
+					keyString.text[0, 4] = "5"
+					keyString.text[1, 4] = "5"
+				endif
 				keyTimer = setTimer(75)
 				bState.lastKey = spr
 				bState.active = true

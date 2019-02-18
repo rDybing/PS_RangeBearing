@@ -199,7 +199,7 @@ function blinkLCDText(mode as integer, kp as integer, onOff as integer)
 
 endFunction
 
-function updateLCDText(mode as integer, ks as keyString_t)
+function updateLCDText(mode as integer, ks as keyString_t, resMode as integer)
 
 	index as integer = 0
 
