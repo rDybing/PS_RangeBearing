@@ -63,7 +63,7 @@ type txt_t
 	calc			as integer[3]
 	alpha			as integer[9]
 	lcdFixed		as integer[3]
-	lcdFloating		as integer[9]
+	lcdFloating		as integer[7]
 	lcdCalc			as integer[2]
 	test			as integer
 	date			as integer
@@ -143,7 +143,6 @@ type coord_t
 	macro			as float
 	mini			as float[8]
 	micro			as float[8]
-	nano			as float[8]
 endType
 
 type calc_t
@@ -158,7 +157,7 @@ type calc_t
 endType
 
 type keyString_t
-	text			as string[1, 4]
+	text			as string[1, 3]
 	position		as integer
 endType
 

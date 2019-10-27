@@ -19,20 +19,16 @@ function calc(c as coord_t[], ks as string[][], mrt as mortar_t)
 	mrtX = (asc(ks[0, 0]) - 65) * 300
 	mrtX = mrtX + (c[0].mini[val(ks[0, 2]) - 1])
 	mrtX = mrtX + (c[0].micro[val(ks[0, 3]) - 1])
-	mrtX = mrtX + (c[0].nano[val(ks[0, 4]) - 1])
 	mrtY = (val(ks[0, 1]) - 1) * 300
 	mrtY = mrtY + (c[1].mini[val(ks[0, 2]) - 1])
 	mrtY = mrtY + (c[1].micro[val(ks[0, 3]) - 1])
-	mrtY = mrtY + (c[1].nano[val(ks[0, 4]) - 1])
 
 	tgtX = (asc(ks[1, 0]) - 65) * 300
 	tgtX = tgtX + (c[0].mini[val(ks[1, 2]) - 1])
 	tgtX = tgtX + (c[0].micro[val(ks[1, 3]) - 1])
-	tgtX = tgtX + (c[0].nano[val(ks[1, 4]) - 1])
 	tgtY = (val(ks[1, 1]) - 1) * 300
 	tgtY = tgtY + (c[1].mini[val(ks[1, 2]) - 1])
 	tgtY = tgtY + (c[1].micro[val(ks[1, 3]) - 1])
-	tgtY = tgtY + (c[1].nano[val(ks[1, 4]) - 1])
 
 	if tgtX > mrtX
 		coordX = tgtX - mrtX

@@ -29,8 +29,8 @@
 	for i = 0 to 3
 		txt.lcdFixed[i]		= 1035 + i // to 1038
 	next i
-	for i = 0 to 9
-		txt.lcdFloating[i]	= 1039 + i // to 1048
+	for i = 0 to 7
+		txt.lcdFloating[i]	= 1039 + i // to 1046
 	next i
 	txt.lcdCalc[0]			= 1049
 	txt.lcdCalc[1]			= 1050
@@ -156,16 +156,6 @@ function initCoord(c ref as coord_t[])
 	c[0].micro[5] = 66.66
 	c[0].micro[8] = 66.66
 	
-	c[0].nano[0] = 0
-	c[0].nano[3] = 0
-	c[0].nano[6] = 0
-	c[0].nano[1] = 11.11
-	c[0].nano[4] = 11.11
-	c[0].nano[7] = 11.11
-	c[0].nano[2] = 22.22
-	c[0].nano[5] = 22.22
-	c[0].nano[8] = 22.22
-
 	// Y coords
 	c[1].mini[6] = 0
 	c[1].mini[7] = 0
@@ -186,16 +176,6 @@ function initCoord(c ref as coord_t[])
 	c[1].micro[0] = 66.66
 	c[1].micro[1] = 66.66
 	c[1].micro[2] = 66.66
-
-	c[1].nano[6] = 0
-	c[1].nano[7] = 0
-	c[1].nano[8] = 0
-	c[1].nano[3] = 11.11
-	c[1].nano[4] = 11.11
-	c[1].nano[5] = 11.11
-	c[1].nano[0] = 22.22
-	c[1].nano[1] = 22.22
-	c[1].nano[2] = 22.22
 
 endFunction
 

@@ -27,8 +27,8 @@ function mainScreen(dev as device_t)
 	bState.latch[0] = true
 	bState.latch[1] = false
 	bState.calc = false
-	keyString.text[0] =["A", "1", "7", "7", "5"]
-	keyString.text[1] =["A", "1", "7", "7", "5"]
+	keyString.text[0] =["A", "1", "7", "7"]
+	keyString.text[1] =["A", "1", "7", "7"]
 	bState.mode = POS
 	bState.secondDigit = false
 	setKeyLatchHighlight(POS)
@@ -36,40 +36,30 @@ function mainScreen(dev as device_t)
 	placeLCDTextNumeric(keyString.text)
 	placeCalcText(mortar[mrtIndex])
 	initCoord(coord)
-	resMode = false
 	activeKey = sprite.bSmall[0]
 
 	blinkTimer = setTimer(250)
 	
 	do
-	
 		m = updateMouse()
 		
 		if m.hit
-			
 			spr = getMouseHit(m)
-			
 			if displayHit(spr)
 				resMode = not resMode
 				keyPressed = true
 			endif
-
 			if topRowKeys(spr)
 				mrtIndex = getKeyTopRow(spr, mrtIndex, mortar, bState, calc)
 				keyPressed = true
 			else
-				keyPressed = getKeyCalcView(spr, keyString, bState, mortar[mrtIndex], calc, coord, resMode)
+				keyPressed = getKeyCalcView(spr, keyString, bState, mortar[mrtIndex], calc, coord)
 			endif
-
 			if keyPressed
-				if not resMode
-					keyString.text[0, 4] = "5"
-					keyString.text[1, 4] = "5"
-				endif
 				keyTimer = setTimer(75)
 				bState.lastKey = spr
 				bState.active = true
-				updateLCDText(bState.mode, keyString, resMode)
+				updateLCDText(bState.mode, keyString)
 				PlaySound(media.keyClick)
 				for i = 0 to txt.lcdFloating.length
 					SetTextVisible(txt.lcdFloating[i], 1)
@@ -83,17 +73,14 @@ function mainScreen(dev as device_t)
 				setKeyHighlight(bState.activeKey, off)
 			endif
 		endif
-
 		if getTimer(blinkTimer)
 			blink = not blink
 			blinkLCDText(bState.mode, keyString.position, blink)
 		endif
-
 		if bState.calc
 			updateCalcText(calc)
 			bState.calc = false
 		endif
-		
 		//testKeyString(keyString, keyStringPosition, bState.mode, bState.secondDigit, dev)
 		//testXY(calc)
 		//testMils(calc.mils)

@@ -1,9 +1,0 @@
-1.0.0: Internal Work in Progress
-1.0.1: Public test
-1.0.2: First Release
- - Fixed divide by zero bug crashing the app
- - Added Mils calculation
- - Added current mortar models and selection between them
- - Added About button linking to blog with instructions
-1.0.3:
- - Added minimum range for the various mortars

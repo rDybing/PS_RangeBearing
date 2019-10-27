@@ -91,7 +91,7 @@ function placeLCDTextNumeric(ks as string[][])
 	mt as txtProp_t
 	posX as float
 	posY as float
-	offsetX = 13
+	offsetX = 17
 	offsetXX = 6
 	
 	posX = getTextX(txt.lcdFixed[0]) + 3
@@ -100,10 +100,10 @@ function placeLCDTextNumeric(ks as string[][])
 
 	k = 0
 	for i = 0 to 1
-		for j = 0 to 4
+		for j = 0 to ks[i].length
 			if j > 1				
 				setTextProperties(mt, posX - 11 + (offsetX * j), posY + ((GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * i), 0)
-				createText(txt.lcdFloating[k], " - " + ks[i, j])
+				createText(txt.lcdFloating[k], "  >" + ks[i, j])
 			else
 				setTextProperties(mt, posX + (offsetXX * j), posY + ((GetSpriteHeight(sprite.lcd) / position.lcdTxtDivY) * i), 0)
 				createText(txt.lcdFloating[k], ks[i, j])
@@ -190,7 +190,7 @@ function blinkLCDText(mode as integer, kp as integer, onOff as integer)
 	index as integer = 0
 
 	if mode = TGT
-		index = 5
+		index = 4
 	endif
 
 	index = index + kp
@@ -199,18 +199,18 @@ function blinkLCDText(mode as integer, kp as integer, onOff as integer)
 
 endFunction
 
-function updateLCDText(mode as integer, ks as keyString_t, resMode as integer)
+function updateLCDText(mode as integer, ks as keyString_t)
 
 	index as integer = 0
 
 	if mode = TGT
-		index = 5
+		index = 4
 	endif
 
 	index = index + ks.position
 
 	if ks.position > 1
-		SetTextString(txt.lcdFloating[index], " - " + ks.text[mode, ks.position])
+		SetTextString(txt.lcdFloating[index], "  >" + ks.text[mode, ks.position])
 	else
 		SetTextString(txt.lcdFloating[index], ks.text[mode, ks.position])
 	endif

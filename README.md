@@ -1,4 +1,41 @@
+# Post Scriptum Mortar Calculator
+
 ## A little app for Android to provide som assistance in the game Post Scriptum.
+
+This repo do not contain any of the media files. To build your own version - add appropriate media files.
+
+This app is written in App Game Kit 2 from [The Game Creators](thegamecreators.com). Mostly for convenience as it will compile to just about anything with no extra effort.
+
+Developed on Linux/Ubuntu
+
+## Contact:
+
+location   | name/handle
+-----------|---------
+github:    | rDybing
+Linked In: | Roy Dybing
+
+## Instructions and Donate:
+
+Visit [Dybings Digital Distractions](https://dybings.blogspot.com/2018/06/post-scriptum-mortar-calculator.html) for complete instructions of use and donation-link.
+
+## Releases
+
+- Version format: [major release].[new feature(s)].[bugfix patch-version]
+
+**0.0.9: Public beta test version**
+**1.0.0: First Release**
+- Fixed divide by zero bug crashing the app
+- Added Mils calculation
+- Added current mortar models and selection between them
+- Added About button linking to blog with instructions
+**1.1.0: Second Release**
+- Added minimum range for the various mortars
+**1.2.0: The Yanks are coming!**
+- Added US 4.2" Mortar
+**1.2.1: Simplifying it**
+- Ripped out the 4th coordinate as it confused quite a few people
+- Changed Android API version to comply with latest requirements from Google Play
 
 ### Copyright: 2018 Roy Dybing
 
@@ -21,15 +58,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-## Versions
-
-For complete changelog see changelog.txt
-
-### Test release (1.0.1):
-
-* Range and bearing calculation.
-
-### First release (1.0.2):
-
-* Mils (milliradians) calculation for current in-game mortars added. 

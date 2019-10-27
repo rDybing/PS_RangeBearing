@@ -8,16 +8,10 @@
 
 // ************************************************ Views Keys *********************************************************
 
-function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref as buttonState_t, mortar as mortar_t, calc ref as calc_t, coord as coord_t[], resMode as integer)
+function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref as buttonState_t, mortar as mortar_t, calc ref as calc_t, coord as coord_t[])
 
 	keyPressed as integer = true
 	
-	if resMode
-		maxRes = 4
-	else
-		maxRes = 3
-	endif
-
 	if spr >= sprite.bSmall[3] and spr <= sprite.bSmall[10]
 		// keypad 1 through 8
 		index = spr - 9010
@@ -84,7 +78,7 @@ function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref
 			if keyString.position > 0
 				dec keystring.position
 			else
-				keyString.position = maxRes
+				keyString.position = 3
 			endif
 			bState.activeKey = setKeyHighlight(sprite.bCoordPrev, on)
 			bState.singleDigit = true		
@@ -100,7 +94,7 @@ function getKeyCalcView(spr as integer, keyString ref as keyString_t, bState ref
 				endif
 			endif
 			
-			if keyString.position < maxRes
+			if keyString.position < 3
 				inc keystring.position
 			else
 				keyString.position = 0

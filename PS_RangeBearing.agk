@@ -57,16 +57,6 @@ FILE_8=text.agc;-1
 FILE_9=chores.agc;-1
 
 [files]
-FILE_NAME_0=0;main.agc;3250;0
-FILE_NAME_1=1;views.agc;1409;1
-FILE_NAME_2=0;output.agc;3542;2
-FILE_NAME_3=0;input.agc;524;4
-FILE_NAME_4=0;tests.agc;58;9
-FILE_NAME_5=0;fileIO.agc;666;5
-FILE_NAME_6=0;structs.agc;2635;7
-FILE_NAME_7=0;constants.agc;6388;8
-FILE_NAME_8=0;text.agc;5014;3
-FILE_NAME_9=0;chores.agc;1960;6
 
 [project]
 description=
