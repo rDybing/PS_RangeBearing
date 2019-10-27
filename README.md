@@ -23,17 +23,17 @@ Visit [Dybings Digital Distractions](https://dybings.blogspot.com/2018/06/post-s
 
 - Version format: [major release].[new feature(s)].[bugfix patch-version]
 
-**0.0.9: Public beta test version**
-**1.0.0: First Release**
+#### v0.0.9: Public beta test version
+#### v1.0.0: First Release
 - Fixed divide by zero bug crashing the app
 - Added Mils calculation
 - Added current mortar models and selection between them
 - Added About button linking to blog with instructions
-**1.1.0: Second Release**
+#### v1.1.0: Second Release
 - Added minimum range for the various mortars
-**1.2.0: The Yanks are coming!**
+#### v1.2.0: The Yanks are coming!
 - Added US 4.2" Mortar
-**1.2.1: Simplifying it**
+#### v1.2.1: Simplifying it
 - Ripped out the 4th coordinate as it confused quite a few people
 - Changed Android API version to comply with latest requirements from Google Play
 
