@@ -221,7 +221,7 @@ function placeNumericKeysTxt()
 
 	mt as txtProp_t
 
-	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 5.9)
 
 	for i = 0 to 11
 
@@ -286,13 +286,16 @@ function placeCalcKeyTxt()
 
 	mt as txtProp_t
 	calcChars as string[3] = ["C", "A", "L", "C"]
-	offsetY as integer = 5
+	offsetY as float = 4.5
 	
-	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 6.3)
-
+	setFontProperties(color[0].r, color[0].g, color[0].b, media.font, 5)
+	
 	for i = 0 to 3
-	
-		setTextProperties(mt, getSpriteX(sprite.bCalc) + (GetSpriteWidth(sprite.bCalc) / 2), getSpriteY(sprite.bCalc) + (offsetY * i) + 0.75, 1)
+		if dev.aspect > 0.62
+			setTextProperties(mt, getSpriteX(sprite.bCalc) + (GetSpriteWidth(sprite.bCalc) / 2), getSpriteY(sprite.bCalc) + (offsetY * i) + 0.5, 1)
+		else
+			setTextProperties(mt, getSpriteX(sprite.bCalc) + (GetSpriteWidth(sprite.bCalc) / 2), getSpriteY(sprite.bCalc) + (offsetY * i) + 2, 1)
+		endif
 		createText(txt.calc[i], calcChars[i])
 		textDraw(txt.calc[i], mt)
 

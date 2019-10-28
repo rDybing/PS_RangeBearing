@@ -60,6 +60,7 @@ global sprite		as sprite_t				// constant IDs
 global txt			as txt_t				// constant IDs
 global color		as color_t[4]			// constant after init
 global position		as position_t			// constant after init
+global dev 			as device_t
 
 aspect				as float				// constant after init
 deviceX				as integer				// constant after init
@@ -67,15 +68,13 @@ deviceY				as integer				// constant after init
 fDeviceX			as float				// constant after init
 fDeviceY			as float				// constant after init
 
-dev 				as device_t
-
 SetRandomSeed(GetUnixTime())
 
 dev.os = GetDeviceBaseName()
 
 if dev.os = "linux" or dev.os = "windows" or dev.os = "pi"
 	SetAntialiasMode(1)
-	aspectMode = 2
+	aspectMode = 0
 	select aspectMode
 	case 0									// 0 = iPad || 1 = iPhone
 		dev.width = 768						// iPad 50% 4/3
@@ -100,7 +99,7 @@ fDeviceX = dev.width
 fDeviceY = dev.height
 aspect = fDeviceX / fDeviceY
 
-dev.aspect = str(aspect, 2)
+dev.aspect = aspect
 
 constants()
 initColor()

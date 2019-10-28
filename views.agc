@@ -45,10 +45,6 @@ function mainScreen(dev as device_t)
 		
 		if m.hit
 			spr = getMouseHit(m)
-			if displayHit(spr)
-				resMode = not resMode
-				keyPressed = true
-			endif
 			if topRowKeys(spr)
 				mrtIndex = getKeyTopRow(spr, mrtIndex, mortar, bState, calc)
 				keyPressed = true
@@ -84,6 +80,7 @@ function mainScreen(dev as device_t)
 		//testKeyString(keyString, keyStringPosition, bState.mode, bState.secondDigit, dev)
 		//testXY(calc)
 		//testMils(calc.mils)
+		print(str(dev.aspect))
 		sync()
 	loop
 	

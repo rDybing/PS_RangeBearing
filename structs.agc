@@ -93,7 +93,7 @@ endType
 type device_t
 	width			as integer
 	height			as integer
-	aspect			as string
+	aspect			as float
 	os				as string
 endType
 
