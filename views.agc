@@ -80,7 +80,7 @@ function mainScreen(dev as device_t)
 		//testKeyString(keyString, keyStringPosition, bState.mode, bState.secondDigit, dev)
 		//testXY(calc)
 		//testMils(calc.mils)
-		print(str(dev.aspect))
+		//print(str(dev.aspect))
 		sync()
 	loop
 	

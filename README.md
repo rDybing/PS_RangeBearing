@@ -6,13 +6,14 @@ This repo do not contain any of the media files. To build your own version - add
 
 This app is written in App Game Kit 2 from [The Game Creators](thegamecreators.com). Mostly for convenience as it will compile to just about anything with no extra effort.
 
-Developed on Linux/Ubuntu
+Developed on Linux/Ubuntu.
 
 ## Contact:
 
 location   | name/handle
 -----------|---------
 github:    | rDybing
+twitter    | @DybingRoy
 Linked In: | Roy Dybing
 
 ## Instructions and Donate:
@@ -38,8 +39,11 @@ Visit [Dybings Digital Distractions](https://dybings.blogspot.com/2018/06/post-s
 - Ripped out the 4th coordinate as it confused quite a few people
 - Changed Android API version to comply with latest requirements from Google Play
 - New minimal Android version is 4.4
+#### v1.3.0: Le Baguette
+- Added French Mortar
+- Fixed formatting of button-text for high-aspect ratio screens.
 
-### Copyright: 2018 Roy Dybing
+### 2018-2020 © Roy Dybing
 
 MIT License:
 

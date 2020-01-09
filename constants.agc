@@ -182,7 +182,7 @@ endFunction
 function initMortar()
 
 	range as integer
-	mrt as mortar_t[3]
+	mrt as mortar_t[5]
 
 	// German 50mm			Granatwerfer 36
 	// German 80mm			Granatwerfer 34
@@ -316,6 +316,72 @@ function initMortar()
 	mrt[3].table[22].mils = 1141
 	mrt[3].table[23].mils = 1112
 	mrt[3].table[24].mils = 1081
+
+	// Fr 3"			
+	mrt[4].model = "FR 3" + chr(34)
+	range = 0
+	for i = 0 to 24
+		inc range, 50
+		mrt[4].table[i].range = range
+	next i
+	mrt[4].table[0].mils = 1553
+	mrt[4].table[1].mils = 1536
+	mrt[4].table[2].mils = 1519
+	mrt[4].table[3].mils = 1502
+	mrt[4].table[4].mils = 1485
+	mrt[4].table[5].mils = 1467
+	mrt[4].table[6].mils = 1450
+	mrt[4].table[7].mils = 1432
+	mrt[4].table[8].mils = 1415
+	mrt[4].table[9].mils = 1397
+	mrt[4].table[10].mils = 1378
+	mrt[4].table[11].mils = 1360
+	mrt[4].table[12].mils = 1341
+	mrt[4].table[13].mils = 1322
+	mrt[4].table[14].mils = 1302
+	mrt[4].table[15].mils = 1282
+	mrt[4].table[16].mils = 1262
+	mrt[4].table[17].mils = 1241
+	mrt[4].table[18].mils = 1219
+	mrt[4].table[19].mils = 1196
+	mrt[4].table[20].mils = 1172
+	mrt[4].table[21].mils = 1147
+	mrt[4].table[22].mils = 1121
+	mrt[4].table[23].mils = 1092
+	mrt[4].table[24].mils = 1062
+
+	// Fr 4"			
+	mrt[5].model = "FR 4" + chr(34)
+	range = 0
+	for i = 0 to 24
+		inc range, 100
+		mrt[5].table[i].range = range
+	next i
+	mrt[5].table[0].mils = 1553
+	mrt[5].table[1].mils = 1535
+	mrt[5].table[2].mils = 1517
+	mrt[5].table[3].mils = 1500
+	mrt[5].table[4].mils = 1482
+	mrt[5].table[5].mils = 1464
+	mrt[5].table[6].mils = 1446
+	mrt[5].table[7].mils = 1428
+	mrt[5].table[8].mils = 1409
+	mrt[5].table[9].mils = 1391
+	mrt[5].table[10].mils = 1372
+	mrt[5].table[11].mils = 1353
+	mrt[5].table[12].mils = 1333
+	mrt[5].table[13].mils = 1313
+	mrt[5].table[14].mils = 1293
+	mrt[5].table[15].mils = 1272
+	mrt[5].table[16].mils = 1250
+	mrt[5].table[17].mils = 1228
+	mrt[5].table[18].mils = 1205
+	mrt[5].table[19].mils = 1181
+	mrt[5].table[20].mils = 1155
+	mrt[5].table[21].mils = 1128
+	mrt[5].table[22].mils = 1100
+	mrt[5].table[23].mils = 1069
+	mrt[5].table[24].mils = 1034
 	
 endFunction mrt
 
