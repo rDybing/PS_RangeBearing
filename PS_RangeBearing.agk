@@ -1,4 +1,3 @@
-
 [apk_settings]
 alias=
 app_icon_path=D:\\Source\\AGK\\PS_RangeBearing\\mortarIconAdjusted.png
@@ -62,11 +61,11 @@ FILE_8=text.agc;-1
 FILE_9=chores.agc;-1
 
 [files]
-FILE_NAME_0=1;main.agc;1759;0
+FILE_NAME_0=0;main.agc;3525;0
 FILE_NAME_1=0;views.agc;1983;1
 FILE_NAME_2=0;output.agc;1511;2
 FILE_NAME_3=0;input.agc;3704;4
-FILE_NAME_4=0;tests.agc;0;9
+FILE_NAME_4=1;tests.agc;0;9
 FILE_NAME_5=0;fileIO.agc;0;5
 FILE_NAME_6=0;structs.agc;1629;7
 FILE_NAME_7=0;constants.agc;6986;8

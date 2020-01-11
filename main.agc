@@ -1,10 +1,11 @@
 /* *******************************************
  *
  * PS_RangeBearing
+ * (aka PS Mortar Calculator)
  *
- *
- * slack:  rdybing
- * github: rDybing
+ * twitter  : @DybingRoy
+ * linked in: Roy Dybing
+ * github   : rDybing
  *
  * donate: https://www.paypal.me/Dybing
  *
